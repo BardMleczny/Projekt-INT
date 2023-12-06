@@ -6,6 +6,8 @@
 #include "IndexBuffer.h"
 #include "Shader.h"
 
+#include "Color.h"
+
 #define ASSERT(x) if (!(x)) __debugbreak();
 #define GLCall(x) GLClearError();\
     x;\
@@ -14,8 +16,16 @@
 void GLClearError();
 bool GLLogCall(const char* function, const char* file, int line); 
 
+class Rectangle;
+
 class Renderer {
 public:
+    Renderer();
+
     void Clear();
     void Draw(const VertexArray& va, const IndexBuffer& ib, const Shader& shader) const;
+    void DrawRectangle(const Rectangle& rectangle, Color color);
+    void DrawRectangle(const Rectangle& rectangle, const Color& color, Shader shader);
+private:
+    Shader basicRectangleShader;
 };

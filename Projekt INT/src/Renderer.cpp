@@ -54,10 +54,15 @@ void Renderer::DrawRectangle(const Rectangle& rectangle, Color color)
     basicRectangleShader.SetUniformMat4f("u_MVP", mvp);
     basicRectangleShader.SetUniform4f("u_Color", color.r, color.g, color.b, color.a);
 
-    rectangle.GetVA().Bind();
-    rectangle.GetIB().Bind();
+    rectangle.m_va.Bind();
+    rectangle.m_ib.Bind();
 
-    GLCall(glDrawElements(GL_TRIANGLES, rectangle.GetIB().GetCount(), GL_UNSIGNED_INT, nullptr));
+    unsigned int vertices[] = {
+            0, 1, 2,
+            2, 3, 0
+    };
+
+    GLCall(glDrawElements(GL_TRIANGLES, rectangle.m_ib.GetCount(), GL_UNSIGNED_INT, &vertices));
 }
 
 void Renderer::DrawRectangle(const Rectangle& rectangle, const Color& color, Shader shader)
@@ -72,8 +77,13 @@ void Renderer::DrawRectangle(const Rectangle& rectangle, const Color& color, Sha
     shader.SetUniformMat4f("u_MVP", mvp);
     shader.SetUniform4f("u_Color", color.r, color.g, color.b, color.a);
 
-    rectangle.GetVA().Bind();
-    rectangle.GetIB().Bind();
+    rectangle.m_va.Bind();
+    rectangle.m_ib.Bind();
 
-    GLCall(glDrawElements(GL_TRIANGLES, rectangle.GetIB().GetCount(), GL_UNSIGNED_INT, nullptr));
+    unsigned int vertices[] = {
+            0, 1, 2,
+            2, 3, 0
+    };
+
+    GLCall(glDrawElements(GL_TRIANGLES, rectangle.m_ib.GetCount(), GL_UNSIGNED_INT, &vertices));
 }

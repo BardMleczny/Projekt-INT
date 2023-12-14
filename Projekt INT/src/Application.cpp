@@ -7,8 +7,8 @@
 
 #include "Rectangle.h"
 
-//#include "glm/glm.hpp"
-//#include "glm/gtc/matrix_transform.hpp"
+#include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp"
 
 #include "imgui/imgui.h"
 #include "imgui/imgui_impl_glfw.h"
@@ -44,7 +44,6 @@ int main(void)
     std::cout << glGetString(GL_VERSION) << std::endl;
 
     {
-
         GLCall(glEnable(GL_BLEND));
         GLCall(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
 
@@ -57,13 +56,9 @@ int main(void)
         ImGui_ImplOpenGL3_Init("#version 330");
         ImGui::StyleColorsDark();
 
-        Rectangle rectangle(100.0f, 100.0f, 100.0f, 100.0f);
-
         while (!glfwWindowShouldClose(window))
         {
             renderer.Clear();
-
-            renderer.DrawRectangle(rectangle, { 0.2f, 0.3f, 0.8f, 1.0f } );
 
             ImGui_ImplOpenGL3_NewFrame();
             ImGui_ImplGlfw_NewFrame();

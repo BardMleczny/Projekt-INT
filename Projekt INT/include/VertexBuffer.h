@@ -3,8 +3,10 @@
 class VertexBuffer
 {
 public:
-	VertexBuffer(const void* data, unsigned int size);
+	VertexBuffer();
 	~VertexBuffer();
+
+	void LoadData(const void* data, unsigned int size);
 
 	void Bind() const;
 	void Unbind() const;

@@ -11,10 +11,12 @@ public:
 	
 	inline float GetWidth() const { return m_width; }
 	inline float GetHeight()  const { return m_height; }
-	inline IndexBuffer GetIB() const { return m_ib; }
-	inline VertexArray GetVA() const { return m_va; }
-private:
-	float m_width, m_height;
+
+	
 	IndexBuffer m_ib;
 	VertexArray m_va;
+private:
+	float m_width, m_height;
+	VertexBuffer m_vb;
+	VertexBufferLayout m_layout;
 };

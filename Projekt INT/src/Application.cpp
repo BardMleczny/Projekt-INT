@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-#include "../include/Renderer.h"
+#include "Renderer.h"
 
 #include "Rectangle.h"
 
@@ -16,6 +16,8 @@
 
 #include "../tests/TestClearColor.h"
 
+#include "Player.h"
+
 int main(void)
 {
     GLFWwindow* window;
@@ -27,7 +29,7 @@ int main(void)
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     
-    window = glfwCreateWindow(960, 720, "Hello World", NULL, NULL);
+    window = glfwCreateWindow(960, 720, "Projekt", NULL, NULL);
     if (!window)
     {
         glfwTerminate();
@@ -42,7 +44,7 @@ int main(void)
         std::cout << "Error!" << std::endl;
 
     std::cout << glGetString(GL_VERSION) << std::endl;
-
+    
     {
         GLCall(glEnable(GL_BLEND));
         GLCall(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
@@ -56,9 +58,17 @@ int main(void)
         ImGui_ImplOpenGL3_Init("#version 330");
         ImGui::StyleColorsDark();
 
+        Rectangle rectangle(100, 100, 100, 100, "res/shaders/basicRectangle.shader");
+        Color color = { 0.2f, 0.3f, 0.8f, 1.0f };
+        Player player(rectangle, color);
+
         while (!glfwWindowShouldClose(window))
         {
+            glfwSetKeyCallback(window, callback);
+
             renderer.Clear();
+
+            player.Draw(renderer);
 
             ImGui_ImplOpenGL3_NewFrame();
             ImGui_ImplGlfw_NewFrame();

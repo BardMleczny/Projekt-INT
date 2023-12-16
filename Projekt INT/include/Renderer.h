@@ -24,8 +24,7 @@ public:
 
     void Clear();
     void Draw(const VertexArray& va, const IndexBuffer& ib, const Shader& shader) const;
-    void DrawRectangle(const Rectangle& rectangle, Color color);
-    void DrawRectangle(const Rectangle& rectangle, const Color& color, Shader shader);
+    void DrawRectangle(const Rectangle& rectangle, const Color& color, Shader& shader) const;
 private:
-    Shader basicRectangleShader;
+    
 };

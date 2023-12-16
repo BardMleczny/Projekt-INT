@@ -66,6 +66,21 @@
     <ClCompile Include="external\stb_image\stb_image.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Input.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Player.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Rectangle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tests\TestClearColor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tests\TestRectangle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shaders\basic.shader" />
@@ -486,6 +501,7 @@
     <None Include="external\glm\gtx\wrap.inl">
       <Filter>Header Files</Filter>
     </None>
+    <None Include="res\shaders\basicRectangle.shader" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\IndexBuffer.h">
@@ -1398,6 +1414,27 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="external\stb_image\stb_image.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Color.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Input.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Rectangle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tests\Test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tests\TestClearColor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tests\TestRectangleColor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,8 +1,14 @@
 #include "Player.h"
 
-void Player::Draw(Renderer renderer)
+Player::Player(Rectangle& rectangle, Color color/*, Texture texture*/)
+	: m_rectangle(rectangle), m_color(color), m_speedX(0), m_speedY(0)
 {
-	renderer.DrawRectangle(rectangle, color);
+
+}
+
+void Player::Draw(const Renderer& renderer)
+{
+	renderer.DrawRectangle(m_rectangle, m_color, m_rectangle.m_shader);
 	Move();
 }
 

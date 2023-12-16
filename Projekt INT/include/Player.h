@@ -4,13 +4,16 @@
 #include "Renderer.h"
 #include "Texture.h"
 
-class Player{
+class Player
+{
 public:
-	void Draw(Renderer renderer);
-	Rectangle rectangle;
+	Player(Rectangle& rectangle, Color color);
+
+	void Draw(const Renderer& renderer);
+	Rectangle m_rectangle;
 private:
 	void Move();
-	Color color;
+	Color m_color;
 	//Texture texture;
-	float speedX, speedY;
+	float m_speedX, m_speedY;
 };

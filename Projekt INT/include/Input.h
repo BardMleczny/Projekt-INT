@@ -2,4 +2,11 @@
 
 #include "GLFW/glfw3.h"
 
-void callback(GLFWwindow* window, int key, int scancode, int action, int mods);
+static class Input
+{
+public:
+	static bool isKeyPressed(int keyCode);
+	static bool isKeyDown(int keyCode);
+	static bool isKeyReleased(int keyCode);
+	static GLFWwindow* window;
+};

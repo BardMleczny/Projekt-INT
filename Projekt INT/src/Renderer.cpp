@@ -1,5 +1,11 @@
-#include "../include/Renderer.h"
+#include "Renderer.h"
+
 #include <iostream>
+
+#include "Rectangle.h"
+
+#include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp"
 
 void GLClearError()
 {
@@ -17,7 +23,11 @@ bool GLLogCall(const char* function, const char* file, int line)
     return true;
 }
 
-void Renderer::Clear() 
+Renderer::Renderer()
+{
+}
+
+void Renderer::Clear()
 {
     glClear(GL_COLOR_BUFFER_BIT);
 }
@@ -30,3 +40,27 @@ void Renderer::Draw(const VertexArray& va, const IndexBuffer& ib, const Shader& 
 
     GLCall(glDrawElements(GL_TRIANGLES, ib.GetCount(), GL_UNSIGNED_INT, nullptr));
 }
+
+void Renderer::DrawRectangle(const Rectangle& rectangle, const Color& color, Shader& shader) const
+{
+    glm::mat4 proj = glm::ortho(0.0f, 960.0f, 0.0f, 720.0f, -1.0f, 1.0f);
+    glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0));
+    glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(rectangle.m_x, rectangle.m_y, 0));
+
+    glm::mat4 mvp = proj * view * model;
+
+    shader.Bind();
+    shader.SetUniformMat4f("u_MVP", mvp);
+    shader.SetUniform4f("u_Color", color.r, color.g, color.b, color.a);
+
+    rectangle.m_va.Bind();
+    rectangle.m_ib.Bind();
+
+    unsigned int vertices[] = {
+            0, 1, 2,
+            2, 3, 0
+    };
+
+    GLCall(glDrawElements(GL_TRIANGLES, rectangle.m_ib.GetCount(), GL_UNSIGNED_INT, &vertices));
+}
+

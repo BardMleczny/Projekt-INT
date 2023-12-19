@@ -66,6 +66,9 @@
     <ClCompile Include="external\stb_image\stb_image.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Input.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="src\Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -76,9 +79,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="tests\TestRectangle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Input.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1416,13 +1416,16 @@
     <ClInclude Include="external\stb_image\stb_image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Rectangle.h">
+    <ClInclude Include="include\Color.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Input.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Color.h">
+    <ClInclude Include="include\Rectangle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="tests\Test.h">
@@ -1432,9 +1435,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="tests\TestRectangleColor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Input.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

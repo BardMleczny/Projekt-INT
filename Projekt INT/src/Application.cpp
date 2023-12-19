@@ -4,8 +4,10 @@
 #include <iostream>
 
 #include "Renderer.h"
+#include "Input.h"
 
 #include "Rectangle.h"
+#include "Player.h"
 
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
@@ -15,8 +17,6 @@
 #include "imgui/imgui_impl_opengl3.h"
 
 #include "../tests/TestClearColor.h"
-
-#include "Player.h"
 
 int main(void)
 {
@@ -30,6 +30,9 @@ int main(void)
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     
     window = glfwCreateWindow(960, 720, "Projekt", NULL, NULL);
+
+    Input::window = window;
+
     if (!window)
     {
         glfwTerminate();
@@ -44,6 +47,8 @@ int main(void)
         std::cout << "Error!" << std::endl;
 
     std::cout << glGetString(GL_VERSION) << std::endl;
+
+    
     
     {
         GLCall(glEnable(GL_BLEND));
@@ -64,8 +69,6 @@ int main(void)
 
         while (!glfwWindowShouldClose(window))
         {
-            glfwSetKeyCallback(window, callback);
-
             renderer.Clear();
 
             player.Draw(renderer);

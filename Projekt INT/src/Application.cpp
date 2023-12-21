@@ -64,8 +64,8 @@ int main(void)
         ImGui::StyleColorsDark();
 
         Rectangle rectangle(100, 100, 100, 100, "res/shaders/basicRectangle.shader");
-        Color color = { 0.2f, 0.3f, 0.8f, 1.0f };
-        Player player(rectangle, color);
+        Color color = { 0.0f, 1.0f, 0.0f, 1.0f };
+        Player player(rectangle, color, "res/textures/image1.png");
 
         while (!glfwWindowShouldClose(window))
         {

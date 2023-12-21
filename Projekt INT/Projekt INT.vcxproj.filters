@@ -83,7 +83,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\shaders\basic.shader" />
     <None Include="external\glm\detail\func_common.inl">
       <Filter>Header Files</Filter>
     </None>
@@ -501,6 +500,7 @@
     <None Include="external\glm\gtx\wrap.inl">
       <Filter>Header Files</Filter>
     </None>
+    <None Include="res\shaders\basic.shader" />
     <None Include="res\shaders\basicRectangle.shader" />
   </ItemGroup>
   <ItemGroup>
@@ -1437,5 +1437,16 @@
     <ClInclude Include="tests\TestRectangleColor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\textures\image2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\image1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\textures\image3.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

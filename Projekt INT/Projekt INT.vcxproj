@@ -631,6 +631,13 @@
     <None Include="external\glm\gtx\vector_angle.inl" />
     <None Include="external\glm\gtx\vector_query.inl" />
     <None Include="external\glm\gtx\wrap.inl" />
+    <None Include="res\shaders\basic.shader" />
+    <None Include="res\shaders\basicRectangle.shader" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\textures\image1.png" />
+    <Image Include="res\textures\image2.png" />
+    <Image Include="res\textures\image3.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

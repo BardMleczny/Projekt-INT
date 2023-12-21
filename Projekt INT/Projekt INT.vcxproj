@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{8c951333-e3e5-409d-b3db-fd2574794927}</ProjectGuid>
-    <RootNamespace>ProjectINT</RootNamespace>
+    <ProjectGuid>{378e4450-8ed3-4824-8b9e-c973f7f35f6e}</ProjectGuid>
+    <RootNamespace>ProjektINT</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -73,22 +73,18 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)bin\intermediates\$(Platform)\$(Configuration)\</IntDir>
-    <EnableMicrosoftCodeAnalysis>true</EnableMicrosoftCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)bin\intermediates\$(Platform)\$(Configuration)\</IntDir>
-    <EnableMicrosoftCodeAnalysis>true</EnableMicrosoftCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)bin\intermediates\$(Platform)\$(Configuration)\</IntDir>
-    <EnableMicrosoftCodeAnalysis>true</EnableMicrosoftCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)bin\intermediates\$(Platform)\$(Configuration)\</IntDir>
-    <EnableMicrosoftCodeAnalysis>true</EnableMicrosoftCodeAnalysis>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -168,8 +164,9 @@
     <ClCompile Include="external\imgui\imgui_tables.cpp" />
     <ClCompile Include="external\imgui\imgui_widgets.cpp" />
     <ClCompile Include="external\stb_image\stb_image.cpp" />
+    <ClCompile Include="src\Application.cpp" />
     <ClCompile Include="src\IndexBuffer.cpp" />
-    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Input.cpp" />
     <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\Rectangle.cpp" />
     <ClCompile Include="src\Renderer.cpp" />
@@ -180,150 +177,6 @@
     <ClCompile Include="src\VertexBufferLayout.cpp" />
     <ClCompile Include="tests\TestClearColor.cpp" />
     <ClCompile Include="tests\TestRectangle.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="external\glm\detail\func_common.inl" />
-    <None Include="external\glm\detail\func_common_simd.inl" />
-    <None Include="external\glm\detail\func_exponential.inl" />
-    <None Include="external\glm\detail\func_exponential_simd.inl" />
-    <None Include="external\glm\detail\func_geometric.inl" />
-    <None Include="external\glm\detail\func_geometric_simd.inl" />
-    <None Include="external\glm\detail\func_integer.inl" />
-    <None Include="external\glm\detail\func_integer_simd.inl" />
-    <None Include="external\glm\detail\func_matrix.inl" />
-    <None Include="external\glm\detail\func_matrix_simd.inl" />
-    <None Include="external\glm\detail\func_packing.inl" />
-    <None Include="external\glm\detail\func_packing_simd.inl" />
-    <None Include="external\glm\detail\func_trigonometric.inl" />
-    <None Include="external\glm\detail\func_trigonometric_simd.inl" />
-    <None Include="external\glm\detail\func_vector_relational.inl" />
-    <None Include="external\glm\detail\func_vector_relational_simd.inl" />
-    <None Include="external\glm\detail\type_half.inl" />
-    <None Include="external\glm\detail\type_mat2x2.inl" />
-    <None Include="external\glm\detail\type_mat2x3.inl" />
-    <None Include="external\glm\detail\type_mat2x4.inl" />
-    <None Include="external\glm\detail\type_mat3x2.inl" />
-    <None Include="external\glm\detail\type_mat3x3.inl" />
-    <None Include="external\glm\detail\type_mat3x4.inl" />
-    <None Include="external\glm\detail\type_mat4x2.inl" />
-    <None Include="external\glm\detail\type_mat4x3.inl" />
-    <None Include="external\glm\detail\type_mat4x4.inl" />
-    <None Include="external\glm\detail\type_mat4x4_simd.inl" />
-    <None Include="external\glm\detail\type_quat.inl" />
-    <None Include="external\glm\detail\type_quat_simd.inl" />
-    <None Include="external\glm\detail\type_vec1.inl" />
-    <None Include="external\glm\detail\type_vec2.inl" />
-    <None Include="external\glm\detail\type_vec3.inl" />
-    <None Include="external\glm\detail\type_vec4.inl" />
-    <None Include="external\glm\detail\type_vec4_simd.inl" />
-    <None Include="external\glm\ext\matrix_clip_space.inl" />
-    <None Include="external\glm\ext\matrix_common.inl" />
-    <None Include="external\glm\ext\matrix_integer.inl" />
-    <None Include="external\glm\ext\matrix_projection.inl" />
-    <None Include="external\glm\ext\matrix_relational.inl" />
-    <None Include="external\glm\ext\matrix_transform.inl" />
-    <None Include="external\glm\ext\quaternion_common.inl" />
-    <None Include="external\glm\ext\quaternion_common_simd.inl" />
-    <None Include="external\glm\ext\quaternion_exponential.inl" />
-    <None Include="external\glm\ext\quaternion_geometric.inl" />
-    <None Include="external\glm\ext\quaternion_relational.inl" />
-    <None Include="external\glm\ext\quaternion_transform.inl" />
-    <None Include="external\glm\ext\quaternion_trigonometric.inl" />
-    <None Include="external\glm\ext\scalar_common.inl" />
-    <None Include="external\glm\ext\scalar_constants.inl" />
-    <None Include="external\glm\ext\scalar_integer.inl" />
-    <None Include="external\glm\ext\scalar_packing.inl" />
-    <None Include="external\glm\ext\scalar_reciprocal.inl" />
-    <None Include="external\glm\ext\scalar_relational.inl" />
-    <None Include="external\glm\ext\scalar_ulp.inl" />
-    <None Include="external\glm\ext\vector_common.inl" />
-    <None Include="external\glm\ext\vector_integer.inl" />
-    <None Include="external\glm\ext\vector_packing.inl" />
-    <None Include="external\glm\ext\vector_reciprocal.inl" />
-    <None Include="external\glm\ext\vector_relational.inl" />
-    <None Include="external\glm\ext\vector_ulp.inl" />
-    <None Include="external\glm\gtc\bitfield.inl" />
-    <None Include="external\glm\gtc\color_space.inl" />
-    <None Include="external\glm\gtc\constants.inl" />
-    <None Include="external\glm\gtc\epsilon.inl" />
-    <None Include="external\glm\gtc\integer.inl" />
-    <None Include="external\glm\gtc\matrix_access.inl" />
-    <None Include="external\glm\gtc\matrix_inverse.inl" />
-    <None Include="external\glm\gtc\matrix_transform.inl" />
-    <None Include="external\glm\gtc\noise.inl" />
-    <None Include="external\glm\gtc\packing.inl" />
-    <None Include="external\glm\gtc\quaternion.inl" />
-    <None Include="external\glm\gtc\quaternion_simd.inl" />
-    <None Include="external\glm\gtc\random.inl" />
-    <None Include="external\glm\gtc\round.inl" />
-    <None Include="external\glm\gtc\type_precision.inl" />
-    <None Include="external\glm\gtc\type_ptr.inl" />
-    <None Include="external\glm\gtc\ulp.inl" />
-    <None Include="external\glm\gtx\associated_min_max.inl" />
-    <None Include="external\glm\gtx\bit.inl" />
-    <None Include="external\glm\gtx\closest_point.inl" />
-    <None Include="external\glm\gtx\color_encoding.inl" />
-    <None Include="external\glm\gtx\color_space.inl" />
-    <None Include="external\glm\gtx\color_space_YCoCg.inl" />
-    <None Include="external\glm\gtx\common.inl" />
-    <None Include="external\glm\gtx\compatibility.inl" />
-    <None Include="external\glm\gtx\component_wise.inl" />
-    <None Include="external\glm\gtx\dual_quaternion.inl" />
-    <None Include="external\glm\gtx\easing.inl" />
-    <None Include="external\glm\gtx\euler_angles.inl" />
-    <None Include="external\glm\gtx\extend.inl" />
-    <None Include="external\glm\gtx\extended_min_max.inl" />
-    <None Include="external\glm\gtx\exterior_product.inl" />
-    <None Include="external\glm\gtx\fast_exponential.inl" />
-    <None Include="external\glm\gtx\fast_square_root.inl" />
-    <None Include="external\glm\gtx\fast_trigonometry.inl" />
-    <None Include="external\glm\gtx\float_notmalize.inl" />
-    <None Include="external\glm\gtx\functions.inl" />
-    <None Include="external\glm\gtx\gradient_paint.inl" />
-    <None Include="external\glm\gtx\handed_coordinate_space.inl" />
-    <None Include="external\glm\gtx\hash.inl" />
-    <None Include="external\glm\gtx\integer.inl" />
-    <None Include="external\glm\gtx\intersect.inl" />
-    <None Include="external\glm\gtx\io.inl" />
-    <None Include="external\glm\gtx\log_base.inl" />
-    <None Include="external\glm\gtx\matrix_cross_product.inl" />
-    <None Include="external\glm\gtx\matrix_decompose.inl" />
-    <None Include="external\glm\gtx\matrix_factorisation.inl" />
-    <None Include="external\glm\gtx\matrix_interpolation.inl" />
-    <None Include="external\glm\gtx\matrix_major_storage.inl" />
-    <None Include="external\glm\gtx\matrix_operation.inl" />
-    <None Include="external\glm\gtx\matrix_query.inl" />
-    <None Include="external\glm\gtx\matrix_transform_2d.inl" />
-    <None Include="external\glm\gtx\mixed_product.inl" />
-    <None Include="external\glm\gtx\norm.inl" />
-    <None Include="external\glm\gtx\normal.inl" />
-    <None Include="external\glm\gtx\normalize_dot.inl" />
-    <None Include="external\glm\gtx\number_precision.inl" />
-    <None Include="external\glm\gtx\optimum_pow.inl" />
-    <None Include="external\glm\gtx\orthonormalize.inl" />
-    <None Include="external\glm\gtx\pca.inl" />
-    <None Include="external\glm\gtx\perpendicular.inl" />
-    <None Include="external\glm\gtx\polar_coordinates.inl" />
-    <None Include="external\glm\gtx\projection.inl" />
-    <None Include="external\glm\gtx\quaternion.inl" />
-    <None Include="external\glm\gtx\raw_data.inl" />
-    <None Include="external\glm\gtx\rotate_normalized_axis.inl" />
-    <None Include="external\glm\gtx\rotate_vector.inl" />
-    <None Include="external\glm\gtx\scalar_relational.inl" />
-    <None Include="external\glm\gtx\spline.inl" />
-    <None Include="external\glm\gtx\std_based_type.inl" />
-    <None Include="external\glm\gtx\string_cast.inl" />
-    <None Include="external\glm\gtx\texture.inl" />
-    <None Include="external\glm\gtx\transform.inl" />
-    <None Include="external\glm\gtx\transform2.inl" />
-    <None Include="external\glm\gtx\type_aligned.inl" />
-    <None Include="external\glm\gtx\type_trait.inl" />
-    <None Include="external\glm\gtx\vector_angle.inl" />
-    <None Include="external\glm\gtx\vector_query.inl" />
-    <None Include="external\glm\gtx\wrap.inl" />
-    <None Include="imgui.ini" />
-    <None Include="res\shaders\basic.shader" />
-    <None Include="res\shaders\basicRectangle.shader" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="external\glm\common.hpp" />
@@ -625,6 +478,7 @@
     <ClInclude Include="external\stb_image\stb_image.h" />
     <ClInclude Include="include\Color.h" />
     <ClInclude Include="include\IndexBuffer.h" />
+    <ClInclude Include="include\Input.h" />
     <ClInclude Include="include\Player.h" />
     <ClInclude Include="include\Rectangle.h" />
     <ClInclude Include="include\Renderer.h" />
@@ -638,7 +492,145 @@
     <ClInclude Include="tests\TestRectangleColor.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="res\textures\image.png" />
+    <None Include="external\glm\detail\func_common.inl" />
+    <None Include="external\glm\detail\func_common_simd.inl" />
+    <None Include="external\glm\detail\func_exponential.inl" />
+    <None Include="external\glm\detail\func_exponential_simd.inl" />
+    <None Include="external\glm\detail\func_geometric.inl" />
+    <None Include="external\glm\detail\func_geometric_simd.inl" />
+    <None Include="external\glm\detail\func_integer.inl" />
+    <None Include="external\glm\detail\func_integer_simd.inl" />
+    <None Include="external\glm\detail\func_matrix.inl" />
+    <None Include="external\glm\detail\func_matrix_simd.inl" />
+    <None Include="external\glm\detail\func_packing.inl" />
+    <None Include="external\glm\detail\func_packing_simd.inl" />
+    <None Include="external\glm\detail\func_trigonometric.inl" />
+    <None Include="external\glm\detail\func_trigonometric_simd.inl" />
+    <None Include="external\glm\detail\func_vector_relational.inl" />
+    <None Include="external\glm\detail\func_vector_relational_simd.inl" />
+    <None Include="external\glm\detail\type_half.inl" />
+    <None Include="external\glm\detail\type_mat2x2.inl" />
+    <None Include="external\glm\detail\type_mat2x3.inl" />
+    <None Include="external\glm\detail\type_mat2x4.inl" />
+    <None Include="external\glm\detail\type_mat3x2.inl" />
+    <None Include="external\glm\detail\type_mat3x3.inl" />
+    <None Include="external\glm\detail\type_mat3x4.inl" />
+    <None Include="external\glm\detail\type_mat4x2.inl" />
+    <None Include="external\glm\detail\type_mat4x3.inl" />
+    <None Include="external\glm\detail\type_mat4x4.inl" />
+    <None Include="external\glm\detail\type_mat4x4_simd.inl" />
+    <None Include="external\glm\detail\type_quat.inl" />
+    <None Include="external\glm\detail\type_quat_simd.inl" />
+    <None Include="external\glm\detail\type_vec1.inl" />
+    <None Include="external\glm\detail\type_vec2.inl" />
+    <None Include="external\glm\detail\type_vec3.inl" />
+    <None Include="external\glm\detail\type_vec4.inl" />
+    <None Include="external\glm\detail\type_vec4_simd.inl" />
+    <None Include="external\glm\ext\matrix_clip_space.inl" />
+    <None Include="external\glm\ext\matrix_common.inl" />
+    <None Include="external\glm\ext\matrix_integer.inl" />
+    <None Include="external\glm\ext\matrix_projection.inl" />
+    <None Include="external\glm\ext\matrix_relational.inl" />
+    <None Include="external\glm\ext\matrix_transform.inl" />
+    <None Include="external\glm\ext\quaternion_common.inl" />
+    <None Include="external\glm\ext\quaternion_common_simd.inl" />
+    <None Include="external\glm\ext\quaternion_exponential.inl" />
+    <None Include="external\glm\ext\quaternion_geometric.inl" />
+    <None Include="external\glm\ext\quaternion_relational.inl" />
+    <None Include="external\glm\ext\quaternion_transform.inl" />
+    <None Include="external\glm\ext\quaternion_trigonometric.inl" />
+    <None Include="external\glm\ext\scalar_common.inl" />
+    <None Include="external\glm\ext\scalar_constants.inl" />
+    <None Include="external\glm\ext\scalar_integer.inl" />
+    <None Include="external\glm\ext\scalar_packing.inl" />
+    <None Include="external\glm\ext\scalar_reciprocal.inl" />
+    <None Include="external\glm\ext\scalar_relational.inl" />
+    <None Include="external\glm\ext\scalar_ulp.inl" />
+    <None Include="external\glm\ext\vector_common.inl" />
+    <None Include="external\glm\ext\vector_integer.inl" />
+    <None Include="external\glm\ext\vector_packing.inl" />
+    <None Include="external\glm\ext\vector_reciprocal.inl" />
+    <None Include="external\glm\ext\vector_relational.inl" />
+    <None Include="external\glm\ext\vector_ulp.inl" />
+    <None Include="external\glm\gtc\bitfield.inl" />
+    <None Include="external\glm\gtc\color_space.inl" />
+    <None Include="external\glm\gtc\constants.inl" />
+    <None Include="external\glm\gtc\epsilon.inl" />
+    <None Include="external\glm\gtc\integer.inl" />
+    <None Include="external\glm\gtc\matrix_access.inl" />
+    <None Include="external\glm\gtc\matrix_inverse.inl" />
+    <None Include="external\glm\gtc\matrix_transform.inl" />
+    <None Include="external\glm\gtc\noise.inl" />
+    <None Include="external\glm\gtc\packing.inl" />
+    <None Include="external\glm\gtc\quaternion.inl" />
+    <None Include="external\glm\gtc\quaternion_simd.inl" />
+    <None Include="external\glm\gtc\random.inl" />
+    <None Include="external\glm\gtc\round.inl" />
+    <None Include="external\glm\gtc\type_precision.inl" />
+    <None Include="external\glm\gtc\type_ptr.inl" />
+    <None Include="external\glm\gtc\ulp.inl" />
+    <None Include="external\glm\gtx\associated_min_max.inl" />
+    <None Include="external\glm\gtx\bit.inl" />
+    <None Include="external\glm\gtx\closest_point.inl" />
+    <None Include="external\glm\gtx\color_encoding.inl" />
+    <None Include="external\glm\gtx\color_space.inl" />
+    <None Include="external\glm\gtx\color_space_YCoCg.inl" />
+    <None Include="external\glm\gtx\common.inl" />
+    <None Include="external\glm\gtx\compatibility.inl" />
+    <None Include="external\glm\gtx\component_wise.inl" />
+    <None Include="external\glm\gtx\dual_quaternion.inl" />
+    <None Include="external\glm\gtx\easing.inl" />
+    <None Include="external\glm\gtx\euler_angles.inl" />
+    <None Include="external\glm\gtx\extend.inl" />
+    <None Include="external\glm\gtx\extended_min_max.inl" />
+    <None Include="external\glm\gtx\exterior_product.inl" />
+    <None Include="external\glm\gtx\fast_exponential.inl" />
+    <None Include="external\glm\gtx\fast_square_root.inl" />
+    <None Include="external\glm\gtx\fast_trigonometry.inl" />
+    <None Include="external\glm\gtx\float_notmalize.inl" />
+    <None Include="external\glm\gtx\functions.inl" />
+    <None Include="external\glm\gtx\gradient_paint.inl" />
+    <None Include="external\glm\gtx\handed_coordinate_space.inl" />
+    <None Include="external\glm\gtx\hash.inl" />
+    <None Include="external\glm\gtx\integer.inl" />
+    <None Include="external\glm\gtx\intersect.inl" />
+    <None Include="external\glm\gtx\io.inl" />
+    <None Include="external\glm\gtx\log_base.inl" />
+    <None Include="external\glm\gtx\matrix_cross_product.inl" />
+    <None Include="external\glm\gtx\matrix_decompose.inl" />
+    <None Include="external\glm\gtx\matrix_factorisation.inl" />
+    <None Include="external\glm\gtx\matrix_interpolation.inl" />
+    <None Include="external\glm\gtx\matrix_major_storage.inl" />
+    <None Include="external\glm\gtx\matrix_operation.inl" />
+    <None Include="external\glm\gtx\matrix_query.inl" />
+    <None Include="external\glm\gtx\matrix_transform_2d.inl" />
+    <None Include="external\glm\gtx\mixed_product.inl" />
+    <None Include="external\glm\gtx\norm.inl" />
+    <None Include="external\glm\gtx\normal.inl" />
+    <None Include="external\glm\gtx\normalize_dot.inl" />
+    <None Include="external\glm\gtx\number_precision.inl" />
+    <None Include="external\glm\gtx\optimum_pow.inl" />
+    <None Include="external\glm\gtx\orthonormalize.inl" />
+    <None Include="external\glm\gtx\pca.inl" />
+    <None Include="external\glm\gtx\perpendicular.inl" />
+    <None Include="external\glm\gtx\polar_coordinates.inl" />
+    <None Include="external\glm\gtx\projection.inl" />
+    <None Include="external\glm\gtx\quaternion.inl" />
+    <None Include="external\glm\gtx\raw_data.inl" />
+    <None Include="external\glm\gtx\rotate_normalized_axis.inl" />
+    <None Include="external\glm\gtx\rotate_vector.inl" />
+    <None Include="external\glm\gtx\scalar_relational.inl" />
+    <None Include="external\glm\gtx\spline.inl" />
+    <None Include="external\glm\gtx\std_based_type.inl" />
+    <None Include="external\glm\gtx\string_cast.inl" />
+    <None Include="external\glm\gtx\texture.inl" />
+    <None Include="external\glm\gtx\transform.inl" />
+    <None Include="external\glm\gtx\transform2.inl" />
+    <None Include="external\glm\gtx\type_aligned.inl" />
+    <None Include="external\glm\gtx\type_trait.inl" />
+    <None Include="external\glm\gtx\vector_angle.inl" />
+    <None Include="external\glm\gtx\vector_query.inl" />
+    <None Include="external\glm\gtx\wrap.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,19 +1,12 @@
 #pragma once
 
-#include "Rectangle.h"
-#include "Renderer.h"
-#include "Texture.h"
-
-class Player
+#include "GameObject.h"
+class Player : public GameObject
 {
 public:
 	Player(Rectangle& rectangle, Color color, const std::string& texturePath);
-
-	void Draw(const Renderer& renderer);
-	Rectangle m_rectangle;
+	void Draw(const Renderer& renderer) override;
 private:
 	void Move();
-	Color m_color;
-	Texture m_texture;
 	float m_speedX, m_speedY;
 };

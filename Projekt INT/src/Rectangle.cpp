@@ -23,8 +23,10 @@ Rectangle::Rectangle(float x, float y, float width, float height, const std::str
 	m_layout.Push<float>(2);
 
 	m_va.AddBuffer(m_vb, m_layout);
+	m_va.Unbind();
 }
 
+<<<<<<< Updated upstream
 void Rectangle::Bind() 
 {
 	m_va.Bind();
@@ -32,3 +34,14 @@ void Rectangle::Bind()
 	m_ib.Bind();
 	m_vb.Bind();
 }
+=======
+//bool CheckCollision(Transform rectangle1, Transform rectangle2)
+//{
+//	if (
+//		rectangle1.x < rectangle2.x + rectangle2.size &&
+//		rectangle1.x + rectangle1.size > rectangle2.x &&
+//		rectangle1.y < rectangle2.y + rectangle2.size &&
+//		rectangle1.y + rectangle1.size > rectangle2.y
+//		)
+//}
+>>>>>>> Stashed changes

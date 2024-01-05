@@ -63,6 +63,7 @@ int main(void)
         ImGui_ImplOpenGL3_Init("#version 330");
         ImGui::StyleColorsDark();
 
+<<<<<<< Updated upstream
         Grid grid("res/textures/test_map.png");
 
         Rectangle rectangle(100, 100, 100, 100, "res/shaders/basicRectangle.shader");
@@ -70,13 +71,63 @@ int main(void)
         Player player(rectangle, color, "res/textures/image1.png");
         
         //Rectangle rectangle1(100, 100, 100, 100, "res/shaders/basicRectangle.shader");
+=======
+        Color color = { 0.0f, 1.0f, 0.0f, 1.0f };
+        //Player player(*new Rectangle(100, 100, 100, 100, "res/shaders/basicRectangle.shader"), color, "res/textures/image1.png");
+
+        VertexArray va;
+        float buffer[] = {
+            0.0f,      0.0f,       0.0f, 0.0f,
+            100.0f,    0.0f,       1.0f, 0.0f,
+            100.0f,    100.0f,     1.0f, 1.0f,
+            0.0f,      100.0f,     0.0f, 1.0f,
+
+            200.0f,    200.0f,     0.0f, 0.0f,
+            300.0f,    200.0f,     1.0f, 0.0f,
+            300.0f,    300.0f,     1.0f, 1.0f,
+            200.0f,    300.0f,     0.0f, 1.0f
+        };
+
+        VertexBuffer vb;
+        vb.LoadData(buffer, 32);
+
+        VertexBufferLayout layout;
+        layout.Push<float>(2);
+        layout.Push<float>(2);
+
+        va.AddBuffer(vb, layout);
+
+        unsigned int vertices[] = {
+            0, 1, 2,
+            2, 3, 0,
+            4, 5, 6,
+            6, 7, 4
+        };
+
+        IndexBuffer ib(vertices, 12);
+
+        Shader shader("res/shaders/basic.shader");
+
+        glm::mat4 proj = glm::ortho(0.0f, 960.0f, 0.0f, 720.0f, -1.0f, 1.0f);
+        glm::mat4 mvp = proj;
+
+        shader.Bind();
+        shader.SetUniformMat4f("u_MVP", mvp);
+        shader.SetUniform4f("u_Color", 1.0f, 0.0f, 1.0f, 1.0f);
+>>>>>>> Stashed changes
 
         while (!glfwWindowShouldClose(window))
         {
             renderer.Clear();
 
+<<<<<<< Updated upstream
             grid.Draw(renderer);
             player.Draw(renderer);
+=======
+            //player.Draw(renderer);
+            
+            renderer.Draw(va, ib, shader);
+>>>>>>> Stashed changes
 
             ImGui_ImplOpenGL3_NewFrame();
             ImGui_ImplGlfw_NewFrame();
@@ -97,3 +148,41 @@ int main(void)
     glfwTerminate();
     return 0;
 }
+
+
+        /*  
+        VertexArray va;
+        float buffer[] = {
+            0.0f,    0.0f,     0.0f, 0.0f,
+            100.0f,  0.0f,     1.0f, 0.0f,
+            100.0f,  100.0f,   1.0f, 1.0f,
+            0.0f,    100.0f,   0.0f, 1.0f
+        };
+
+        VertexBuffer vb;
+        vb.LoadData(buffer, 16);
+
+        VertexBufferLayout layout;
+        layout.Push<float>(2);
+        layout.Push<float>(2);
+
+        va.AddBuffer(vb, layout);
+
+        unsigned int vertices[] = {
+            0, 1, 2,
+            2, 3, 0
+        };
+
+        IndexBuffer ib(vertices, 6);
+
+        Shader shader("res/shaders/basic.shader");
+
+        glm::mat4 proj = glm::ortho(0.0f, 960.0f, 0.0f, 720.0f, -1.0f, 1.0f);
+        glm::mat4 mvp = proj;
+
+        shader.Bind();
+        shader.SetUniformMat4f("u_MVP", mvp);
+        shader.SetUniform4f("u_Color", 1.0f, 0.0f, 1.0f, 1.0f);
+        */
+
+        //renderer.Draw(va, ib, shader);

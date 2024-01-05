@@ -1,5 +1,7 @@
 #include "Grid.h"
+#include "stb_image/stb_image.h"
 
+<<<<<<< Updated upstream
 #include "stb_image/stb_image.h"
 #include "TerrainType.h"
 #include <iostream>
@@ -51,4 +53,9 @@ void Grid::Draw(const Renderer& renderer)
 		// LoadTileTexture(tempTile.tileType);
 		renderer.DrawRectangle(basicRectangle, { 1.0f, 0.0f, 1.0f, 1.0f }, basicRectangle.m_shader);
 	}
+=======
+Grid::Grid(const std::string& path)
+{
+	
+>>>>>>> Stashed changes
 }

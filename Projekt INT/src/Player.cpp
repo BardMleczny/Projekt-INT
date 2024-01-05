@@ -31,6 +31,6 @@ void Player::Move()
 	if (Input::isKeyDown(GLFW_KEY_W)) {
 		m_speedY += 3.0f;
 	}
-	m_rectangle.m_x += m_speedX;
-	m_rectangle.m_y += m_speedY;
+	m_rectangle.m_transform.x += m_speedX;
+	m_rectangle.m_transform.y += m_speedY;
 }

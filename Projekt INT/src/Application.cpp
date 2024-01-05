@@ -63,18 +63,20 @@ int main(void)
         ImGui_ImplOpenGL3_Init("#version 330");
         ImGui::StyleColorsDark();
 
+        Grid grid("res/textures/test_map.png");
+
         Rectangle rectangle(100, 100, 100, 100, "res/shaders/basicRectangle.shader");
         Color color = { 1.0f, 1.0f, 1.0f, 1.0f };
         Player player(rectangle, color, "res/textures/image1.png");
         
-        Grid grid("res/textures/test_map.png");
+        //Rectangle rectangle1(100, 100, 100, 100, "res/shaders/basicRectangle.shader");
 
         while (!glfwWindowShouldClose(window))
         {
             renderer.Clear();
 
             grid.Draw(renderer);
-            //player.Draw(renderer);
+            player.Draw(renderer);
 
             ImGui_ImplOpenGL3_NewFrame();
             ImGui_ImplGlfw_NewFrame();

@@ -3,7 +3,6 @@
 #include "stb_image/stb_image.h"
 #include "TerrainType.h"
 #include <iostream>
-#include <string>
 
 
 TerrainType getTileType(Color color) {
@@ -17,53 +16,39 @@ TerrainType getTileType(Color color) {
 }
 
 Grid::Grid(const std::string& path)
+	:  basicRectangle(0, 0, offset, offset, "res/shaders/basic.shader")
 {
 	int width, height, bpp;
 	unsigned char* buffer = stbi_load(path.c_str(), &width, &height, &bpp, 4);
-	int size = width * height;
+	size = width * height;
 	std::cout << size << std::endl;
-	tiles = new Terrain*[width * height];
+	tiles = new Tile[width * height];
 
 	for (int i = 0; i < height; i++)
 	{
 		for (int j = 0; j < width; j++)
 		{
-			Rectangle tileRec = Rectangle(j * offset, i * offset, offset, offset, "res/shaders/basicRectangle.shader");
-
 			int index = i * height + j;
-			TerrainType type = getTileType(Color{ (float)buffer[index * bpp] / 255, (float)buffer[index * bpp + 1] / 255,
-										(float)buffer[index * bpp + 2] / 255, (float)buffer[index * bpp + 3] / 255, });
-		
-			std::cout << sizeof(tiles) << std::endl;
-			delete tiles[i * height + j];
+			TerrainType type = getTileType(Color{ (float)buffer[index * bpp], (float)buffer[index * bpp + 1],
+												  (float)buffer[index * bpp + 2], (float)buffer[index * bpp + 3], });
 
-			tiles[i * height + j] = new Terrain(tileRec, type);
+			tiles[i * height + j] = { (float)j * offset, (float)i * offset, (float)offset, type };
 		}
 	}
 }
 
-void Grid::Draw(const Renderer& renderer)
+Grid::~Grid()
 {
-	for (int i = 0; i < sizeof(tiles) / sizeof(Terrain); i++)
-	{
-		tiles[i]->Draw(renderer);
-	}
+	delete tiles;
 }
 
-Grid::TileTexture::TileTexture()
+void Grid::Draw(const Renderer& renderer)
 {
-	const char NUM_OF_TEXTURES = 23;
-	textures = new Texture[NUM_OF_TEXTURES];
-	std::string texturesNames[NUM_OF_TEXTURES] = {
-		"grass1", "grass2", "grass3", "grass4", "grass4", 
-		"dirtGrass1", "dirtGrass2", "dirtGrass3", "dirtGrass4", "dirtGrass5", 
-		"dirtLeft1", "dirtLeft2", "dirtRight1", "dirtRight2", 
-		"dirtBottom1", "dirtBottom2", "dirtBottom3", "dirtBottom4", "dirtBottom5", 
-		"dirtCenter1", "dirtCenter2" , "dirtCenter3" , "dirtCenter4" 
-	};
-
-	for (int i = 0; i < NUM_OF_TEXTURES; i++)
+	for (int i = 0; i < size; i++)
 	{
-		textures[i] = Texture("res/textures/tiles/" + texturesNames[i] + ".png");
+		Tile tempTile = tiles[i];
+		basicRectangle.m_transform = { tempTile.x, tempTile.y, tempTile.size, tempTile.size };
+		// LoadTileTexture(tempTile.tileType);
+		renderer.DrawRectangle(basicRectangle, { 1.0f, 0.0f, 1.0f, 1.0f }, basicRectangle.m_shader);
 	}
 }

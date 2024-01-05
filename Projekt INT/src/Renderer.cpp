@@ -45,7 +45,7 @@ void Renderer::DrawRectangle(const Rectangle& rectangle, const Color& color, Sha
 {
     glm::mat4 proj = glm::ortho(0.0f, 960.0f, 0.0f, 720.0f, -1.0f, 1.0f);
     glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0));
-    glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(rectangle.m_x, rectangle.m_y, 0));
+    glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(rectangle.m_transform.x, rectangle.m_transform.y, 0));
 
     glm::mat4 mvp = proj * view * model;
 

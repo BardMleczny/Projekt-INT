@@ -81,7 +81,7 @@ Grid::Grid(const std::string& path)
 
 	shader.Bind();
 	shader.SetUniformMat4f("u_MVP", mvp);
-	shader.SetUniform4f("u_Color", 1.0f, 1.0f, 1.0f, 1.0f);
+	shader.SetUniform4f("u_Color", 0.0f, 1.0f, 0.0f, 1.0f);
 }
 
 Grid::~Grid()

@@ -9,8 +9,11 @@
 Shader::Shader(const std::string& filepath)
 	: m_FilePath(filepath)
 {
-    ShaderProgramSource source = ParseShader(filepath);
-    m_RendererID = CreateShader(source.VertexSource, source.FragmentSource);
+    if (filepath != "") 
+    {
+        ShaderProgramSource source = ParseShader(filepath);
+        m_RendererID = CreateShader(source.VertexSource, source.FragmentSource);
+    }
 }
 
 Shader::~Shader()
@@ -26,7 +29,7 @@ unsigned int Shader::CompileShader(unsigned int type, const std::string& source)
 
     int result;
     glGetShaderiv(id, GL_COMPILE_STATUS, &result);
-    if (result == GL_FALSE) {
+    if (result = GL_FALSE) {
         int length;
         glGetShaderiv(id, GL_INFO_LOG_LENGTH, &length);
         char* message = (char*)_malloca(length * sizeof(char));

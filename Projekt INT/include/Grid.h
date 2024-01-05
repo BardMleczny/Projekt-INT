@@ -5,8 +5,18 @@
 class Grid 
 {
 public:
-	Grid();
-	Terrain* tiles;
+	Grid(const std::string& path);
+
+	void Draw(const Renderer& renderer);
+
+	Terrain** tiles;
+
+	class TileTexture
+	{
+	public:
+		Texture* textures;
+		TileTexture()
+	};
 private:
-	const int offset = 20;
+	const int offset = 32;
 };

@@ -18,6 +18,8 @@
 
 #include "../tests/TestClearColor.h"
 
+#include "Grid.h"
+
 int main(void)
 {
     GLFWwindow* window;
@@ -62,14 +64,17 @@ int main(void)
         ImGui::StyleColorsDark();
 
         Rectangle rectangle(100, 100, 100, 100, "res/shaders/basicRectangle.shader");
-        Color color = { 0.0f, 1.0f, 0.0f, 1.0f };
+        Color color = { 1.0f, 1.0f, 1.0f, 1.0f };
         Player player(rectangle, color, "res/textures/image1.png");
+        
+        Grid grid("res/textures/test_map.png");
 
         while (!glfwWindowShouldClose(window))
         {
             renderer.Clear();
 
-            player.Draw(renderer);
+            grid.Draw(renderer);
+            //player.Draw(renderer);
 
             ImGui_ImplOpenGL3_NewFrame();
             ImGui_ImplGlfw_NewFrame();

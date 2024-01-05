@@ -5,5 +5,7 @@
 
 class Terrain : public GameObject
 {
+public:
 	Terrain(Rectangle& rectangle, TerrainType type);
+	Terrain();
 };

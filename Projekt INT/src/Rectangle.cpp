@@ -5,7 +5,7 @@
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 
-Rectangle::Rectangle(float x, float y, float width, float height, std::string shaderPath)
+Rectangle::Rectangle(float x, float y, float width, float height, const std::string& shaderPath)
 	: m_x(x), m_y(y), m_width(width), m_height(height), m_va(),
 	m_ib(new unsigned int[6] {0, 1, 2, 2, 3, 0}, 6),
 	m_shader(shaderPath), m_vb(), m_layout()

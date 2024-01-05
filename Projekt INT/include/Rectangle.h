@@ -7,7 +7,7 @@ class Rectangle
 public:
 	float m_x, m_y;
 
-	Rectangle(float x, float y, float width, float height, std::string shaderPath);
+	Rectangle(float x, float y, float width, float height, const std::string& shaderPath);
 	
 	inline float GetWidth() const { return m_width; }
 	inline float GetHeight()  const { return m_height; }

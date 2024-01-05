@@ -3,8 +3,10 @@
 class IndexBuffer
 {
 public:
-	IndexBuffer(const unsigned int* data, unsigned int count);
+	IndexBuffer();
 	~IndexBuffer();
+
+	void LoadData(const unsigned int* data, unsigned int count);
 
 	void Bind() const;
 	void Unbind() const;

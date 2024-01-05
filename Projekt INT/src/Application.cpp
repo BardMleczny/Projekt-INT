@@ -20,6 +20,11 @@
 
 #include "Grid.h"
 
+void calculateFPS(GLFWwindow* window);
+
+double lastTime = 0.0;
+int frameCount = 0;
+
 int main(void)
 {
     GLFWwindow* window;
@@ -63,71 +68,19 @@ int main(void)
         ImGui_ImplOpenGL3_Init("#version 330");
         ImGui::StyleColorsDark();
 
-<<<<<<< Updated upstream
         Grid grid("res/textures/test_map.png");
 
-        Rectangle rectangle(100, 100, 100, 100, "res/shaders/basicRectangle.shader");
         Color color = { 1.0f, 1.0f, 1.0f, 1.0f };
-        Player player(rectangle, color, "res/textures/image1.png");
-        
-        //Rectangle rectangle1(100, 100, 100, 100, "res/shaders/basicRectangle.shader");
-=======
-        Color color = { 0.0f, 1.0f, 0.0f, 1.0f };
-        //Player player(*new Rectangle(100, 100, 100, 100, "res/shaders/basicRectangle.shader"), color, "res/textures/image1.png");
-
-        VertexArray va;
-        float buffer[] = {
-            0.0f,      0.0f,       0.0f, 0.0f,
-            100.0f,    0.0f,       1.0f, 0.0f,
-            100.0f,    100.0f,     1.0f, 1.0f,
-            0.0f,      100.0f,     0.0f, 1.0f,
-
-            200.0f,    200.0f,     0.0f, 0.0f,
-            300.0f,    200.0f,     1.0f, 0.0f,
-            300.0f,    300.0f,     1.0f, 1.0f,
-            200.0f,    300.0f,     0.0f, 1.0f
-        };
-
-        VertexBuffer vb;
-        vb.LoadData(buffer, 32);
-
-        VertexBufferLayout layout;
-        layout.Push<float>(2);
-        layout.Push<float>(2);
-
-        va.AddBuffer(vb, layout);
-
-        unsigned int vertices[] = {
-            0, 1, 2,
-            2, 3, 0,
-            4, 5, 6,
-            6, 7, 4
-        };
-
-        IndexBuffer ib(vertices, 12);
-
-        Shader shader("res/shaders/basic.shader");
-
-        glm::mat4 proj = glm::ortho(0.0f, 960.0f, 0.0f, 720.0f, -1.0f, 1.0f);
-        glm::mat4 mvp = proj;
-
-        shader.Bind();
-        shader.SetUniformMat4f("u_MVP", mvp);
-        shader.SetUniform4f("u_Color", 1.0f, 0.0f, 1.0f, 1.0f);
->>>>>>> Stashed changes
+        Player player(*new Rectangle(100, 100, 100, 100, "res/shaders/basicRectangle.shader"), color, "res/textures/image1.png");
 
         while (!glfwWindowShouldClose(window))
         {
+            calculateFPS(window);
+
             renderer.Clear();
 
-<<<<<<< Updated upstream
             grid.Draw(renderer);
-            player.Draw(renderer);
-=======
             //player.Draw(renderer);
-            
-            renderer.Draw(va, ib, shader);
->>>>>>> Stashed changes
 
             ImGui_ImplOpenGL3_NewFrame();
             ImGui_ImplGlfw_NewFrame();
@@ -149,40 +102,23 @@ int main(void)
     return 0;
 }
 
+void calculateFPS(GLFWwindow* window) {
+    // Get the current time
+    double currentTime = glfwGetTime();
 
-        /*  
-        VertexArray va;
-        float buffer[] = {
-            0.0f,    0.0f,     0.0f, 0.0f,
-            100.0f,  0.0f,     1.0f, 0.0f,
-            100.0f,  100.0f,   1.0f, 1.0f,
-            0.0f,    100.0f,   0.0f, 1.0f
-        };
+    // Calculate the time it took to render the frame
+    double deltaTime = currentTime - lastTime;
 
-        VertexBuffer vb;
-        vb.LoadData(buffer, 16);
+    // Increment the frame count
+    frameCount++;
 
-        VertexBufferLayout layout;
-        layout.Push<float>(2);
-        layout.Push<float>(2);
+    // If 1 second has passed, calculate and display FPS
+    if (deltaTime >= 1.0) {
+        double fps = static_cast<double>(frameCount) / deltaTime;
+        std::cout << "FPS: " << fps << std::endl;
 
-        va.AddBuffer(vb, layout);
-
-        unsigned int vertices[] = {
-            0, 1, 2,
-            2, 3, 0
-        };
-
-        IndexBuffer ib(vertices, 6);
-
-        Shader shader("res/shaders/basic.shader");
-
-        glm::mat4 proj = glm::ortho(0.0f, 960.0f, 0.0f, 720.0f, -1.0f, 1.0f);
-        glm::mat4 mvp = proj;
-
-        shader.Bind();
-        shader.SetUniformMat4f("u_MVP", mvp);
-        shader.SetUniform4f("u_Color", 1.0f, 0.0f, 1.0f, 1.0f);
-        */
-
-        //renderer.Draw(va, ib, shader);
+        // Reset variables for the next second
+        frameCount = 0;
+        lastTime = currentTime;
+    }
+}

@@ -1,11 +1,11 @@
 #pragma once
 
-#include "Terrain.h"
-#include <iostream>
+#include "Renderer.h"
+#include "Rectangle.h"
+#include "TerrainType.h"
 
 struct Tile {
-	float x, y;
-	float size;
+	Transform transform;
 	TerrainType type;
 };
 
@@ -13,17 +13,18 @@ class Grid
 {
 public:
 	Grid(const std::string& path);
-<<<<<<< Updated upstream
 	~Grid();
 
 	void Draw(const Renderer& renderer);
 
 	Tile* tiles;
-=======
-	Terrain* tiles;
->>>>>>> Stashed changes
 private:
 	int size;
 	const int offset = 32;
-	Rectangle basicRectangle;
+	unsigned int* indices;
+	VertexArray va;
+	VertexBuffer vb;
+	VertexBufferLayout layout;
+	IndexBuffer ib;
+	Shader shader;
 };

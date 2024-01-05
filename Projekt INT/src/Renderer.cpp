@@ -41,6 +41,15 @@ void Renderer::Draw(const VertexArray& va, const IndexBuffer& ib, const Shader& 
     GLCall(glDrawElements(GL_TRIANGLES, ib.GetCount(), GL_UNSIGNED_INT, nullptr));
 }
 
+void Renderer::DrawBatch(const VertexArray& va, const IndexBuffer& ib, const Shader& shader, const unsigned int* indices) const
+{
+    va.Bind();
+    ib.Bind();
+    shader.Bind();
+
+    GLCall(glDrawElements(GL_TRIANGLES, ib.GetCount(), GL_UNSIGNED_INT, indices));
+}
+
 void Renderer::DrawRectangle(const Rectangle& rectangle, const Color& color, Shader& shader) const
 {
     glm::mat4 proj = glm::ortho(0.0f, 960.0f, 0.0f, 720.0f, -1.0f, 1.0f);

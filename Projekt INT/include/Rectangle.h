@@ -29,4 +29,4 @@ private:
 	VertexBufferLayout m_layout;
 };
 
-//bool CheckCollision(Transform rectangle1, Transform rectangle2);
+bool CheckCollision(Transform rectangle1, Transform rectangle2);

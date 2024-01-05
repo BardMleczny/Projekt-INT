@@ -24,6 +24,7 @@ public:
 
     void Clear();
     void Draw(const VertexArray& va, const IndexBuffer& ib, const Shader& shader) const;
+    void DrawBatch(const VertexArray& va, const IndexBuffer& ib, const Shader& shader, const unsigned int* indices) const;
     void DrawRectangle(const Rectangle& rectangle, const Color& color, Shader& shader) const;
 private:
     

@@ -12,7 +12,22 @@ Grid::Grid(const std::string& path)
 {
 	int width, height, bpp;
 	unsigned char* buffer = stbi_load(path.c_str(), &width, &height, &bpp, 4);
+
+	/*for (int i = 0; i < height; i++)
+	{
+		for (int j = 0; j < width; j++)
+		{
+			std::cout << (int)buffer[(i * height + j) * 4] << "-" << 
+					(int)buffer[(i * height + j) * 4 + 1] << "-" << 
+					(int)buffer[(i * height + j) * 4 + 2] << "-" << 
+					(int)buffer[(i * height + j) * 4 + 3] << "|";
+		}
+		std::cout << std::endl;
+	}*/
+
 	size = width * height;
+	std::cout << width << std::endl;
+	std::cout << height << std::endl;
 	std::cout << size << std::endl;
 	tiles = new Tile[width * height];
 
@@ -25,7 +40,15 @@ Grid::Grid(const std::string& path)
 		for (int j = 0; j < width; j++)
 		{
 			int index = i * height + j;
+<<<<<<< Updated upstream
 			TerrainType type = TerrainType((int)((float)buffer[index * bpp] * 1000000 + (float)buffer[index * bpp + 1] * 1000 + (float)buffer[index * bpp + 2]));
+=======
+			int value = (int)(buffer[index * 4] * 1000000 +
+				buffer[index * 4 + 1] * 1000 +
+				buffer[index * 4 + 2]);
+
+			TerrainType type = TerrainType(value);
+>>>>>>> Stashed changes
 
 			tiles[i * height + j] = { { (float)j * offset, (float)i * offset, (float)offset, (float)offset }, type };
 
@@ -71,8 +94,9 @@ Grid::Grid(const std::string& path)
 
 	glm::mat4 proj = glm::ortho(0.0f, 1600.0f, 0.0f, 960.0f, -1.0f, 1.0f);
 	glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0));
+	//glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(300.0f, 300.0f, 0));
 
-	glm::mat4 mvp = proj * view;
+	glm::mat4 mvp = proj * view/* * model*/;
 
 	shader.Bind();
 	shader.SetUniformMat4f("u_MVP", mvp);
@@ -94,7 +118,12 @@ Grid::TileTexture::TileTexture()
 	const char NUM_OF_TEXTURES = 23;
 	textures = new Texture[NUM_OF_TEXTURES];
 	std::string texturesNames[NUM_OF_TEXTURES] = {
+<<<<<<< Updated upstream
 		"grass1", "grass2", "grass3", "grass4", "grass4",
+=======
+		"empty",
+		"grass1", "grass2", "grass3", "grass4", "grass5",
+>>>>>>> Stashed changes
 		"dirtGrass1", "dirtGrass2", "dirtGrass3", "dirtGrass4", "dirtGrass5",
 		"dirtLeft1", "dirtLeft2", "dirtRight1", "dirtRight2",
 		"dirtCenter1", "dirtCenter2" , "dirtCenter3" , "dirtCenter4",

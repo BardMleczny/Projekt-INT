@@ -30,7 +30,11 @@ public:
 	};
 private:
 	int size;
+<<<<<<< Updated upstream
 	const int offset = 32;
+=======
+	const int OFFSET = 32;
+>>>>>>> Stashed changes
 	unsigned int* indices;
 	VertexArray va;
 	VertexBuffer vb;

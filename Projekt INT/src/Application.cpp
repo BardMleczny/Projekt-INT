@@ -73,7 +73,7 @@ int main(void)
         Grid grid("res/textures/test_map.png");
 
         Color color = { 1.0f, 1.0f, 1.0f, 1.0f };
-        //Player player(*new Rectangle(100, 100, 100, 100, "res/shaders/basicRectangle.shader"), color, "res/textures/image1.png");
+        Player player(*new Rectangle(100, 100, 100, 100, "res/shaders/basicRectangle.shader"), color, "res/textures/image1.png");
         NumberText n(251, 64);
         while (!glfwWindowShouldClose(window))
         {
@@ -82,7 +82,7 @@ int main(void)
             renderer.Clear();
 
             grid.Draw(renderer);
-            //player.Draw(renderer);
+            player.Draw(renderer);
             n.Draw(100, 100, renderer);
 
             ImGui_ImplOpenGL3_NewFrame();

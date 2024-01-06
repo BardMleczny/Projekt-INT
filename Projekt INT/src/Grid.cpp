@@ -20,7 +20,7 @@ Grid::Grid(const std::string& path)
 	std::cout << size << std::endl;
 	tiles = new Tile[width * height];
 
-	float* data = new float[size * 16];
+	float* data = new float[size * 20];
 
 	indices = new unsigned int[size * 6];
 
@@ -34,25 +34,29 @@ Grid::Grid(const std::string& path)
 
 			tiles[i * height + j] = { { (float)j * offset, (float)i * offset, (float)offset, (float)offset }, type };
 
-			data[index * 16 + 0] = j * offset;
-			data[index * 16 + 1] = i * offset;
-			data[index * 16 + 2] = 0;
-			data[index * 16 + 3] = 0;
+			data[index * 20 + 0] = j * offset;
+			data[index * 20 + 1] = i * offset;
+			data[index * 20 + 2] = 0;
+			data[index * 20 + 3] = 0;
+			data[index * 20 + 4] = getTextureIndex(type);
 
-			data[index * 16 + 4] = j * offset + offset;
-			data[index * 16 + 5] = i * offset;
-			data[index * 16 + 6] = 1;
-			data[index * 16 + 7] = 0;
+			data[index * 20 + 5] = j * offset + offset;
+			data[index * 20 + 6] = i * offset;
+			data[index * 20 + 7] = 1;
+			data[index * 20 + 8] = 0;
+			data[index * 20 + 9] = getTextureIndex(type);
 
-			data[index * 16 + 8] = j * offset + offset;
-			data[index * 16 + 9] = i * offset + offset;
-			data[index * 16 + 10] = 1;
-			data[index * 16 + 11] = 1;
+			data[index * 20 + 10] = j * offset + offset;
+			data[index * 20 + 11] = i * offset + offset;
+			data[index * 20 + 12] = 1;
+			data[index * 20 + 13] = 1;
+			data[index * 20 + 14] = getTextureIndex(type);
 
-			data[index * 16 + 12] = j * offset;
-			data[index * 16 + 13] = i * offset + offset;
-			data[index * 16 + 14] = 0;
-			data[index * 16 + 15] = 1;
+			data[index * 20 + 15] = j * offset;
+			data[index * 20 + 16] = i * offset + offset;
+			data[index * 20 + 17] = 0;
+			data[index * 20 + 18] = 1;
+			data[index * 20 + 19] = getTextureIndex(type);
 
 			indices[index * 6 + 0] = 0 + index * 4;
 			indices[index * 6 + 1] = 1 + index * 4;
@@ -65,7 +69,7 @@ Grid::Grid(const std::string& path)
 
 	ib.LoadData(indices, size * 6);
 
-	vb.LoadData(data, size * 16);
+	vb.LoadData(data, size * 20);
 
 	layout.Push<float>(2);
 	layout.Push<float>(2);
@@ -79,9 +83,16 @@ Grid::Grid(const std::string& path)
 
 	glm::mat4 mvp = proj * view;
 
+	int* textureIndexes = new int[TileTexture.NUM_OF_TEXTURES];
+
+	for (int i = 0; i < TileTexture.NUM_OF_TEXTURES; i++)
+	{
+		textureIndexes[i] = i;
+	}
+
 	shader.Bind();
 	shader.SetUniformMat4f("u_MVP", mvp);
-	shader.SetUniform4f("u_Color", 0.0f, 1.0f, 0.0f, 1.0f);
+	shader.SetUniform1iv("u_Textures", TileTexture.NUM_OF_TEXTURES, textureIndexes);
 }
 
 Grid::~Grid()
@@ -91,5 +102,6 @@ Grid::~Grid()
 
 void Grid::Draw(const Renderer& renderer)
 {
+	TileTexture.LoadTextures();
 	renderer.DrawBatch(va, ib, shader, indices);
 }

@@ -23,8 +23,10 @@ public:
 	class TileTexture
 	{
 	public:
+		const char NUM_OF_TEXTURES = 23;
 		Texture* textures;
 		TileTexture();
+		int NumOfTextureEnum(TerrainType terrainType);
 	};
 private:
 	int size;

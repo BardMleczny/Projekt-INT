@@ -97,12 +97,67 @@ Grid::TileTexture::TileTexture()
 		"grass1", "grass2", "grass3", "grass4", "grass4",
 		"dirtGrass1", "dirtGrass2", "dirtGrass3", "dirtGrass4", "dirtGrass5",
 		"dirtLeft1", "dirtLeft2", "dirtRight1", "dirtRight2",
-		"dirtBottom1", "dirtBottom2", "dirtBottom3", "dirtBottom4", "dirtBottom5",
-		"dirtCenter1", "dirtCenter2" , "dirtCenter3" , "dirtCenter4"
+		"dirtCenter1", "dirtCenter2" , "dirtCenter3" , "dirtCenter4",
+		"dirtBottom1", "dirtBottom2", "dirtBottom3", "dirtBottom4", "dirtBottom5"
 	};
 
 	for (int i = 0; i < NUM_OF_TEXTURES; i++)
 	{
 		textures[i] = Texture("res/textures/tiles/" + texturesNames[i] + ".png");
+	}
+}
+
+int Grid::TileTexture::NumOfTextureEnum(TerrainType terrainType)
+{
+	switch (terrainType)
+	{
+	case GRASS1:
+		return 0;
+	case GRASS2:
+		return 1;
+	case GRASS3:
+		return 2;
+	case GRASS4:
+		return 3;
+	case GRASS5:
+		return 4;
+	case DIRTGRASS1:
+		return 5;
+	case DIRTGRASS2:
+		return 6;
+	case DIRTGRASS3:
+		return 7;
+	case DIRTGRASS4:
+		return 8;
+	case DIRTGRASS5:
+		return 9;
+	case DIRTLEFT1:
+		return 10;
+	case DIRTLEFT2:
+		return 11;
+	case DIRTRIGHT1:
+		return 12;
+	case DIRTRIGHT2:
+		return 13;
+	case DIRTCENTER1:
+		return 14;
+	case DIRTCENTER2:
+		return 15;
+	case DIRTCENTER3:
+		return 16;
+	case DIRTCENTER4:
+		return 17;
+	case DIRTBOTTOM1:
+		return 18;
+	case DIRTBOTTOM2:
+		return 19;
+	case DIRTBOTTOM3:
+		return 20;
+	case DIRTBOTTOM4:
+		return 21;
+	case DIRTBOTTOM5:
+		return 22;
+	default:
+		return -1;
 	}
 }

@@ -7,10 +7,6 @@
 #include "glm/gtc/matrix_transform.hpp"
 #include "Color.h"
 
-TerrainType getTileType(Color color) {
-	return TerrainType::DEFAULT;
-}
-
 Grid::Grid(const std::string& path)
 	:  shader("res/shaders/basic.shader")
 {
@@ -29,8 +25,7 @@ Grid::Grid(const std::string& path)
 		for (int j = 0; j < width; j++)
 		{
 			int index = i * height + j;
-			TerrainType type = getTileType(Color{ (float)buffer[index * bpp], (float)buffer[index * bpp + 1],
-												  (float)buffer[index * bpp + 2], (float)buffer[index * bpp + 3], });
+			TerrainType type = TerrainType((int)((float)buffer[index * bpp] * 1000000 + (float)buffer[index * bpp + 1] * 1000 + (float)buffer[index * bpp + 2]));
 
 			tiles[i * height + j] = { { (float)j * offset, (float)i * offset, (float)offset, (float)offset }, type };
 
@@ -92,4 +87,22 @@ Grid::~Grid()
 void Grid::Draw(const Renderer& renderer)
 {
 	renderer.DrawBatch(va, ib, shader, indices);
+}
+
+Grid::TileTexture::TileTexture()
+{
+	const char NUM_OF_TEXTURES = 23;
+	textures = new Texture[NUM_OF_TEXTURES];
+	std::string texturesNames[NUM_OF_TEXTURES] = {
+		"grass1", "grass2", "grass3", "grass4", "grass4",
+		"dirtGrass1", "dirtGrass2", "dirtGrass3", "dirtGrass4", "dirtGrass5",
+		"dirtLeft1", "dirtLeft2", "dirtRight1", "dirtRight2",
+		"dirtBottom1", "dirtBottom2", "dirtBottom3", "dirtBottom4", "dirtBottom5",
+		"dirtCenter1", "dirtCenter2" , "dirtCenter3" , "dirtCenter4"
+	};
+
+	for (int i = 0; i < NUM_OF_TEXTURES; i++)
+	{
+		textures[i] = Texture("res/textures/tiles/" + texturesNames[i] + ".png");
+	}
 }

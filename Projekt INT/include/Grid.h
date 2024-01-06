@@ -3,6 +3,7 @@
 #include "Renderer.h"
 #include "Rectangle.h"
 #include "TerrainType.h"
+#include "Texture.h"
 
 struct Tile {
 	Transform transform;
@@ -18,6 +19,13 @@ public:
 	void Draw(const Renderer& renderer);
 
 	Tile* tiles;
+
+	class TileTexture
+	{
+	public:
+		Texture* textures;
+		TileTexture();
+	};
 private:
 	int size;
 	const int offset = 32;

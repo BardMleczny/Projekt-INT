@@ -70,7 +70,7 @@ int main(void)
         ImGui_ImplOpenGL3_Init("#version 330");
         ImGui::StyleColorsDark();
 
-        Grid grid("res/textures/test_map.png");
+        Grid grid("res/textures/bomba.png");
 
         Color color = { 1.0f, 1.0f, 1.0f, 1.0f };
         Player player(*new Rectangle(100, 100, 100, 100, "res/shaders/basicRectangle.shader"), color, "res/textures/image1.png");

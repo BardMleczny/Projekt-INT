@@ -3,6 +3,7 @@
 #include "Renderer.h"
 #include "Rectangle.h"
 #include "TerrainType.h"
+#include "Texture.h"
 
 struct Tile {
 	Transform transform;
@@ -19,8 +20,25 @@ public:
 
 	Tile* tiles;
 private:
+	class TileTexture
+	{
+	public:
+		TileTexture();
+		~TileTexture();
+		
+		int getTextureIndex(TerrainType terrainType);
+		void LoadTextures();
+
+		const char NUM_OF_TEXTURES = 24;
+		
+	private:
+		Texture** textures;
+	};
+
+	TileTexture tileTexture;
+
 	int size;
-	const int offset = 32;
+	const int OFFSET = 64;
 	unsigned int* indices;
 	VertexArray va;
 	VertexBuffer vb;

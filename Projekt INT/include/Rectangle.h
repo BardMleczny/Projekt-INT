@@ -11,8 +11,6 @@ struct Transform
 class Rectangle
 {
 public:
-	Transform m_transform;
-
 	Rectangle(float x, float y, float width, float height, const std::string& shaderPath);
 	
 	void Bind();
@@ -20,7 +18,8 @@ public:
 	inline float GetWidth() const { return m_transform.width; }
 	inline float GetHeight()  const { return m_transform.height; }
 
-	
+	Transform m_transform;
+
 	IndexBuffer m_ib;
 	VertexArray m_va;
 	Shader m_shader;

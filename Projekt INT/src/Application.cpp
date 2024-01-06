@@ -70,19 +70,11 @@ int main(void)
         ImGui_ImplOpenGL3_Init("#version 330");
         ImGui::StyleColorsDark();
 
-<<<<<<< Updated upstream
-        Grid grid("res/textures/test_map.png");
-
-        Color color = { 1.0f, 1.0f, 1.0f, 1.0f };
-        //Player player(*new Rectangle(100, 100, 100, 100, "res/shaders/basicRectangle.shader"), color, "res/textures/image1.png");
-        NumberText n(251, 64);
-=======
         Grid grid("res/textures/niggermap.png");
 
         Color color = { 1.0f, 1.0f, 1.0f, 1.0f };
         Player player(*new Rectangle(100, 100, 100, 100, "res/shaders/basicRectangle.shader"), color, "res/textures/image1.png");
         //NumberText n(251, 64);
->>>>>>> Stashed changes
         while (!glfwWindowShouldClose(window))
         {
             calculateFPS(window);
@@ -90,13 +82,9 @@ int main(void)
             renderer.Clear();
 
             grid.Draw(renderer);
-<<<<<<< Updated upstream
-            //player.Draw(renderer);
-            n.Draw(100, 100, renderer);
-=======
+
             player.Draw(renderer);
             //n.Draw(100, 100, renderer);
->>>>>>> Stashed changes
 
             ImGui_ImplOpenGL3_NewFrame();
             ImGui_ImplGlfw_NewFrame();

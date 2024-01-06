@@ -10,7 +10,7 @@ struct Tile {
 	TerrainType type;
 };
 
-class Grid 
+class Grid
 {
 public:
 	Grid(const std::string& path);
@@ -19,22 +19,26 @@ public:
 	void Draw(const Renderer& renderer);
 
 	Tile* tiles;
-
+private:
 	class TileTexture
 	{
 	public:
-		const char NUM_OF_TEXTURES = 23;
-		Texture* textures;
 		TileTexture();
-		int NumOfTextureEnum(TerrainType terrainType);
+		~TileTexture();
+
+		int getTextureIndex(TerrainType terrainType);
+		void LoadTextures();
+
+		const char NUM_OF_TEXTURES = 24;
+
+	private:
+		Texture** textures;
 	};
-private:
+
+	TileTexture tileTexture;
+
 	int size;
-<<<<<<< Updated upstream
-	const int offset = 32;
-=======
-	const int OFFSET = 32;
->>>>>>> Stashed changes
+	const int OFFSET = 64;
 	unsigned int* indices;
 	VertexArray va;
 	VertexBuffer vb;

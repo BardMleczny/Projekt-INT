@@ -8,22 +8,10 @@
 #include "Color.h"
 
 Grid::Grid(const std::string& path)
-	:  shader("res/shaders/basic.shader")
+	:  shader("res/shaders/grid.shader")
 {
 	int width, height, bpp;
 	unsigned char* buffer = stbi_load(path.c_str(), &width, &height, &bpp, 4);
-
-	/*for (int i = 0; i < height; i++)
-	{
-		for (int j = 0; j < width; j++)
-		{
-			std::cout << (int)buffer[(i * height + j) * 4] << "-" << 
-					(int)buffer[(i * height + j) * 4 + 1] << "-" << 
-					(int)buffer[(i * height + j) * 4 + 2] << "-" << 
-					(int)buffer[(i * height + j) * 4 + 3] << "|";
-		}
-		std::cout << std::endl;
-	}*/
 
 	size = width * height;
 	std::cout << width << std::endl;
@@ -31,7 +19,7 @@ Grid::Grid(const std::string& path)
 	std::cout << size << std::endl;
 	tiles = new Tile[width * height];
 
-	float* data = new float[size * 16];
+	float* data = new float[size * 20];
 
 	indices = new unsigned int[size * 6];
 
@@ -40,37 +28,38 @@ Grid::Grid(const std::string& path)
 		for (int j = 0; j < width; j++)
 		{
 			int index = i * height + j;
-<<<<<<< Updated upstream
-			TerrainType type = TerrainType((int)((float)buffer[index * bpp] * 1000000 + (float)buffer[index * bpp + 1] * 1000 + (float)buffer[index * bpp + 2]));
-=======
+			
 			int value = (int)(buffer[index * 4] * 1000000 +
 				buffer[index * 4 + 1] * 1000 +
 				buffer[index * 4 + 2]);
 
 			TerrainType type = TerrainType(value);
->>>>>>> Stashed changes
 
-			tiles[i * height + j] = { { (float)j * offset, (float)i * offset, (float)offset, (float)offset }, type };
+			tiles[i * height + j] = { { (float)j * OFFSET, (float)i * OFFSET, (float)OFFSET, (float)OFFSET }, type };
 
-			data[index * 16 + 0] = j * offset;
-			data[index * 16 + 1] = i * offset;
-			data[index * 16 + 2] = 0;
-			data[index * 16 + 3] = 0;
+			data[index * 20 + 0] = j * OFFSET;
+			data[index * 20 + 1] = i * OFFSET;
+			data[index * 20 + 2] = 0;
+			data[index * 20 + 3] = 0;
+			data[index * 20 + 4] = tileTexture.getTextureIndex(type);
 
-			data[index * 16 + 4] = j * offset + offset;
-			data[index * 16 + 5] = i * offset;
-			data[index * 16 + 6] = 1;
-			data[index * 16 + 7] = 0;
+			data[index * 20 + 5] = j * OFFSET + OFFSET;
+			data[index * 20 + 6] = i * OFFSET;
+			data[index * 20 + 7] = 1;
+			data[index * 20 + 8] = 0;
+			data[index * 20 + 9] = tileTexture.getTextureIndex(type);
 
-			data[index * 16 + 8] = j * offset + offset;
-			data[index * 16 + 9] = i * offset + offset;
-			data[index * 16 + 10] = 1;
-			data[index * 16 + 11] = 1;
+			data[index * 20 + 10] = j * OFFSET + OFFSET;
+			data[index * 20 + 11] = i * OFFSET + OFFSET;
+			data[index * 20 + 12] = 1;
+			data[index * 20 + 13] = 1;
+			data[index * 20 + 14] = tileTexture.getTextureIndex(type);
 
-			data[index * 16 + 12] = j * offset;
-			data[index * 16 + 13] = i * offset + offset;
-			data[index * 16 + 14] = 0;
-			data[index * 16 + 15] = 1;
+			data[index * 20 + 15] = j * OFFSET;
+			data[index * 20 + 16] = i * OFFSET + OFFSET;
+			data[index * 20 + 17] = 0;
+			data[index * 20 + 18] = 1;
+			data[index * 20 + 19] = tileTexture.getTextureIndex(type);
 
 			indices[index * 6 + 0] = 0 + index * 4;
 			indices[index * 6 + 1] = 1 + index * 4;
@@ -83,10 +72,11 @@ Grid::Grid(const std::string& path)
 
 	ib.LoadData(indices, size * 6);
 
-	vb.LoadData(data, size * 16);
+	vb.LoadData(data, size * 20);
 
 	layout.Push<float>(2);
 	layout.Push<float>(2);
+	layout.Push<float>(1);
 
 	va.AddBuffer(vb, layout);
 
@@ -94,13 +84,19 @@ Grid::Grid(const std::string& path)
 
 	glm::mat4 proj = glm::ortho(0.0f, 1600.0f, 0.0f, 960.0f, -1.0f, 1.0f);
 	glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0));
-	//glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(300.0f, 300.0f, 0));
 
-	glm::mat4 mvp = proj * view/* * model*/;
+	glm::mat4 mvp = proj * view;
+
+	int* textureIndexes = new int[tileTexture.NUM_OF_TEXTURES];
+
+	for (int i = 0; i < tileTexture.NUM_OF_TEXTURES; i++)
+	{
+		textureIndexes[i] = i;
+	}
 
 	shader.Bind();
 	shader.SetUniformMat4f("u_MVP", mvp);
-	shader.SetUniform4f("u_Color", 0.0f, 1.0f, 0.0f, 1.0f);
+	shader.SetUniform1iv("u_Textures", tileTexture.NUM_OF_TEXTURES, textureIndexes);
 }
 
 Grid::~Grid()
@@ -110,20 +106,17 @@ Grid::~Grid()
 
 void Grid::Draw(const Renderer& renderer)
 {
+	tileTexture.LoadTextures();
 	renderer.DrawBatch(va, ib, shader, indices);
 }
 
 Grid::TileTexture::TileTexture()
 {
-	const char NUM_OF_TEXTURES = 23;
-	textures = new Texture[NUM_OF_TEXTURES];
+	const char NUM_OF_TEXTURES = 24;
+	textures = new Texture * [NUM_OF_TEXTURES];
 	std::string texturesNames[NUM_OF_TEXTURES] = {
-<<<<<<< Updated upstream
-		"grass1", "grass2", "grass3", "grass4", "grass4",
-=======
 		"empty",
-		"grass1", "grass2", "grass3", "grass4", "grass5",
->>>>>>> Stashed changes
+		"grass1", "grass2", "grass3", "grass4", "grass4",
 		"dirtGrass1", "dirtGrass2", "dirtGrass3", "dirtGrass4", "dirtGrass5",
 		"dirtLeft1", "dirtLeft2", "dirtRight1", "dirtRight2",
 		"dirtCenter1", "dirtCenter2" , "dirtCenter3" , "dirtCenter4",
@@ -132,61 +125,79 @@ Grid::TileTexture::TileTexture()
 
 	for (int i = 0; i < NUM_OF_TEXTURES; i++)
 	{
-		textures[i] = Texture("res/textures/tiles/" + texturesNames[i] + ".png");
+		Texture* tempTexture = new Texture("res/textures/tiles/" + texturesNames[i] + ".png");
+		textures[i] = tempTexture;
 	}
 }
 
-int Grid::TileTexture::NumOfTextureEnum(TerrainType terrainType)
+Grid::TileTexture::~TileTexture()
+{
+	for (int i = 0; i < NUM_OF_TEXTURES; i++)
+	{
+		delete textures[i];
+	}
+	delete textures;
+}
+
+void Grid::TileTexture::LoadTextures()
+{
+	for (int i = 0; i < NUM_OF_TEXTURES; i++)
+	{
+		textures[i]->Bind(i);
+	}
+}
+
+int Grid::TileTexture::getTextureIndex(TerrainType terrainType)
 {
 	switch (terrainType)
 	{
 	case GRASS1:
-		return 0;
-	case GRASS2:
 		return 1;
-	case GRASS3:
+	case GRASS2:
 		return 2;
-	case GRASS4:
+	case GRASS3:
 		return 3;
-	case GRASS5:
+	case GRASS4:
 		return 4;
-	case DIRTGRASS1:
+	case GRASS5:
 		return 5;
-	case DIRTGRASS2:
+	case DIRTGRASS1:
 		return 6;
-	case DIRTGRASS3:
+	case DIRTGRASS2:
 		return 7;
-	case DIRTGRASS4:
+	case DIRTGRASS3:
 		return 8;
-	case DIRTGRASS5:
+	case DIRTGRASS4:
 		return 9;
-	case DIRTLEFT1:
+	case DIRTGRASS5:
 		return 10;
-	case DIRTLEFT2:
+	case DIRTLEFT1:
 		return 11;
-	case DIRTRIGHT1:
+	case DIRTLEFT2:
 		return 12;
-	case DIRTRIGHT2:
+	case DIRTRIGHT1:
 		return 13;
-	case DIRTCENTER1:
+	case DIRTRIGHT2:
 		return 14;
-	case DIRTCENTER2:
+	case DIRTCENTER1:
 		return 15;
-	case DIRTCENTER3:
+	case DIRTCENTER2:
 		return 16;
-	case DIRTCENTER4:
+	case DIRTCENTER3:
 		return 17;
-	case DIRTBOTTOM1:
+	case DIRTCENTER4:
 		return 18;
-	case DIRTBOTTOM2:
+	case DIRTBOTTOM1:
 		return 19;
-	case DIRTBOTTOM3:
+	case DIRTBOTTOM2:
 		return 20;
-	case DIRTBOTTOM4:
+	case DIRTBOTTOM3:
 		return 21;
-	case DIRTBOTTOM5:
+	case DIRTBOTTOM4:
 		return 22;
+	case DIRTBOTTOM5:
+		return 23;
 	default:
-		return -1;
+		return 0;
 	}
 }

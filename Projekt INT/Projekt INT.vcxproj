@@ -640,6 +640,7 @@
     <None Include="external\glm\gtx\wrap.inl" />
     <None Include="res\shaders\basic.shader" />
     <None Include="res\shaders\basicRectangle.shader" />
+    <None Include="res\shaders\grid.shader" />
     <None Include="res\shaders\number.shader" />
   </ItemGroup>
   <ItemGroup>

@@ -169,6 +169,7 @@
     <ClCompile Include="src\Grid.cpp" />
     <ClCompile Include="src\IndexBuffer.cpp" />
     <ClCompile Include="src\Input.cpp" />
+    <ClCompile Include="src\Number.cpp" />
     <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\Rectangle.cpp" />
     <ClCompile Include="src\Renderer.cpp" />
@@ -483,6 +484,7 @@
     <ClInclude Include="include\Grid.h" />
     <ClInclude Include="include\IndexBuffer.h" />
     <ClInclude Include="include\Input.h" />
+    <ClInclude Include="include\Number.h" />
     <ClInclude Include="include\Player.h" />
     <ClInclude Include="include\Rectangle.h" />
     <ClInclude Include="include\Renderer.h" />
@@ -638,6 +640,7 @@
     <None Include="external\glm\gtx\wrap.inl" />
     <None Include="res\shaders\basic.shader" />
     <None Include="res\shaders\basicRectangle.shader" />
+    <None Include="res\shaders\number.shader" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\image1.png" />

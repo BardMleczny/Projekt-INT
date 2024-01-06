@@ -4,6 +4,7 @@
 
 class Texture {
 public:
+	inline Texture() {}
 	Texture(const std::string& path);
 	~Texture();
 	

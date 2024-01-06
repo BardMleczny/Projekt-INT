@@ -87,6 +87,9 @@
     <ClCompile Include="src\Grid.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Number.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="external\glm\detail\func_common.inl">
@@ -508,6 +511,7 @@
     </None>
     <None Include="res\shaders\basic.shader" />
     <None Include="res\shaders\basicRectangle.shader" />
+    <None Include="res\shaders\number.shader" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\IndexBuffer.h">
@@ -1450,6 +1454,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\TerrainType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Number.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

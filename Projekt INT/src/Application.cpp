@@ -20,6 +20,8 @@
 
 #include "Grid.h"
 
+#include "Number.h"
+
 void calculateFPS(GLFWwindow* window);
 
 double lastTime = 0.0;
@@ -36,7 +38,7 @@ int main(void)
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     
-    window = glfwCreateWindow(960, 720, "Projekt", NULL, NULL);
+    window = glfwCreateWindow(1600, 960, "Projekt", NULL, NULL);
 
     Input::window = window;
 
@@ -71,8 +73,8 @@ int main(void)
         Grid grid("res/textures/test_map.png");
 
         Color color = { 1.0f, 1.0f, 1.0f, 1.0f };
-        Player player(*new Rectangle(100, 100, 100, 100, "res/shaders/basicRectangle.shader"), color, "res/textures/image1.png");
-
+        //Player player(*new Rectangle(100, 100, 100, 100, "res/shaders/basicRectangle.shader"), color, "res/textures/image1.png");
+        NumberText n(251, 64);
         while (!glfwWindowShouldClose(window))
         {
             calculateFPS(window);
@@ -81,6 +83,7 @@ int main(void)
 
             grid.Draw(renderer);
             //player.Draw(renderer);
+            n.Draw(100, 100, renderer);
 
             ImGui_ImplOpenGL3_NewFrame();
             ImGui_ImplGlfw_NewFrame();
@@ -103,21 +106,16 @@ int main(void)
 }
 
 void calculateFPS(GLFWwindow* window) {
-    // Get the current time
     double currentTime = glfwGetTime();
 
-    // Calculate the time it took to render the frame
     double deltaTime = currentTime - lastTime;
 
-    // Increment the frame count
     frameCount++;
 
-    // If 1 second has passed, calculate and display FPS
     if (deltaTime >= 1.0) {
         double fps = static_cast<double>(frameCount) / deltaTime;
         std::cout << "FPS: " << fps << std::endl;
 
-        // Reset variables for the next second
         frameCount = 0;
         lastTime = currentTime;
     }

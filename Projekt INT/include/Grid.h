@@ -18,6 +18,8 @@ public:
 
 	void Draw(const Renderer& renderer);
 
+	int size;
+
 	Tile* tiles;
 private:
 	class TileTexture
@@ -37,8 +39,7 @@ private:
 
 	TileTexture tileTexture;
 
-	int size;
-	const int OFFSET = 64;
+	const int OFFSET = 16;
 	unsigned int* indices;
 	VertexArray va;
 	VertexBuffer vb;

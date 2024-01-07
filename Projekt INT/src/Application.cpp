@@ -73,8 +73,21 @@ int main(void)
         Grid grid("res/textures/niggermap.png");
 
         Color color = { 1.0f, 1.0f, 1.0f, 1.0f };
-        Player player(*new Rectangle(100, 100, 100, 100, "res/shaders/basicRectangle.shader"), color, "res/textures/image1.png");
+        Player player(*new Rectangle(100, 400, 100, 100, "res/shaders/basicRectangle.shader"), color, "res/textures/image1.png");
         //NumberText n(251, 64);
+
+        std::vector<GameObject*> f;
+        for (int i = 0; i < grid.size; i++)
+        {
+            //std::cout << grid.tiles[i].type;
+            /*if (grid.tiles[i].type != TerrainType::SKY && grid.tiles[i].type != TerrainType::DEFAULT)
+            {
+                Transform t = grid.tiles[i].transform;
+                
+                f.emplace_back(new GameObject(*new Rectangle(t.x, t.y, t.width, t.height, "res/shaders/basic.shader"), { 0.0f, 0.0f, 0.0f, 1.0f }, "res/textures/image1.png"));
+            }*/
+        }
+
         while (!glfwWindowShouldClose(window))
         {
             calculateFPS(window);
@@ -83,7 +96,13 @@ int main(void)
 
             grid.Draw(renderer);
 
-            player.Draw(renderer);
+            /*for (int i = 0; i < f.size(); i++)
+            {
+                f[i]->Draw(renderer);
+            }*/
+
+            player.Update(renderer, grid);
+
             //n.Draw(100, 100, renderer);
 
             ImGui_ImplOpenGL3_NewFrame();

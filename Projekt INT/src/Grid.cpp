@@ -35,28 +35,31 @@ Grid::Grid(const std::string& path)
 
 			TerrainType type = TerrainType(value);
 
-			tiles[i * height + j] = { { (float)j * OFFSET, (float)i * OFFSET, (float)OFFSET, (float)OFFSET }, type };
+			float x = (float)j * OFFSET;
+			float y = (float)i * OFFSET;
 
-			data[index * 20 + 0] = j * OFFSET;
-			data[index * 20 + 1] = i * OFFSET;
+			tiles[index] = { { x, y, (float)OFFSET, (float)OFFSET }, type };
+
+			data[index * 20 + 0] = x;
+			data[index * 20 + 1] = y;
 			data[index * 20 + 2] = 0;
 			data[index * 20 + 3] = 0;
 			data[index * 20 + 4] = tileTexture.getTextureIndex(type);
 
-			data[index * 20 + 5] = j * OFFSET + OFFSET;
-			data[index * 20 + 6] = i * OFFSET;
+			data[index * 20 + 5] = x + OFFSET;
+			data[index * 20 + 6] = y;
 			data[index * 20 + 7] = 1;
 			data[index * 20 + 8] = 0;
 			data[index * 20 + 9] = tileTexture.getTextureIndex(type);
 
-			data[index * 20 + 10] = j * OFFSET + OFFSET;
-			data[index * 20 + 11] = i * OFFSET + OFFSET;
+			data[index * 20 + 10] = x + OFFSET;
+			data[index * 20 + 11] = y + OFFSET;
 			data[index * 20 + 12] = 1;
 			data[index * 20 + 13] = 1;
 			data[index * 20 + 14] = tileTexture.getTextureIndex(type);
 
-			data[index * 20 + 15] = j * OFFSET;
-			data[index * 20 + 16] = i * OFFSET + OFFSET;
+			data[index * 20 + 15] = x;
+			data[index * 20 + 16] = y + OFFSET;
 			data[index * 20 + 17] = 0;
 			data[index * 20 + 18] = 1;
 			data[index * 20 + 19] = tileTexture.getTextureIndex(type);

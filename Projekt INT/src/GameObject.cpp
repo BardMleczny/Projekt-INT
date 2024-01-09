@@ -20,8 +20,8 @@ GameObject::GameObject()
 
 }
 
-void GameObject::Draw(const Renderer& renderer) {
+void GameObject::Draw(const Renderer& renderer, Camera camera) {
 	m_texture.Bind();
-	renderer.DrawRectangle(m_rectangle, m_color, m_rectangle.m_shader);
+	renderer.DrawRectangle(m_rectangle, m_color, m_rectangle.m_shader, camera.GetMatrix());
 	m_texture.Unbind();
 }

@@ -22,6 +22,8 @@
 
 #include "Number.h"
 
+#include "Camera.h"
+
 void calculateFPS(GLFWwindow* window);
 
 double lastTime = 0.0;
@@ -62,6 +64,7 @@ int main(void)
         GLCall(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
 
         Renderer renderer;
+        Camera camera;
 
         ImGui::CreateContext();
         ImGuiIO& io = ImGui::GetIO(); (void)io;
@@ -70,10 +73,10 @@ int main(void)
         ImGui_ImplOpenGL3_Init("#version 330");
         ImGui::StyleColorsDark();
 
-        Grid grid("res/textures/niggermap.png");
+        Grid grid("res/textures/niggermap3.png");
 
         Color color = { 1.0f, 1.0f, 1.0f, 1.0f };
-        Player player(*new Rectangle(100, 400, 100, 100, "res/shaders/basicRectangle.shader"), color, "res/textures/image1.png");
+        Player player(*new Rectangle(192, 640, 96, 96, "res/shaders/basicRectangle.shader"), color, "res/textures/player_right.png");
         //NumberText n(251, 64);
 
         std::vector<GameObject*> f;
@@ -93,15 +96,15 @@ int main(void)
             calculateFPS(window);
 
             renderer.Clear();
-
-            grid.Draw(renderer);
+            player.Update(renderer, grid, camera);
+            grid.Draw(renderer, camera.GetMatrix());
 
             /*for (int i = 0; i < f.size(); i++)
             {
                 f[i]->Draw(renderer);
             }*/
 
-            player.Update(renderer, grid);
+            
 
             //n.Draw(100, 100, renderer);
 

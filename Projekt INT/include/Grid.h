@@ -16,7 +16,7 @@ public:
 	Grid(const std::string& path);
 	~Grid();
 
-	void Draw(const Renderer& renderer);
+	void Draw(const Renderer& renderer, const glm::mat4 view);
 
 	int size;
 
@@ -39,7 +39,7 @@ private:
 
 	TileTexture tileTexture;
 
-	const int OFFSET = 16;
+	const int OFFSET = 32;
 	unsigned int* indices;
 	VertexArray va;
 	VertexBuffer vb;

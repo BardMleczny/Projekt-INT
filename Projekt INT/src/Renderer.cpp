@@ -7,6 +7,8 @@
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 
+#include "Camera.h"
+
 void GLClearError()
 {
     while (glGetError() != GL_NO_ERROR);
@@ -51,10 +53,9 @@ void Renderer::DrawBatch(const VertexArray& va, const IndexBuffer& ib, const Sha
     GLCall(glDrawElements(GL_TRIANGLES, ib.GetCount(), GL_UNSIGNED_INT, indices));
 }
 
-void Renderer::DrawRectangle(const Rectangle& rectangle, const Color& color, Shader& shader) const
+void Renderer::DrawRectangle(const Rectangle& rectangle, const Color& color, Shader& shader, glm::mat4 view) const
 {
     glm::mat4 proj = glm::ortho(0.0f, 1600.0f, 0.0f, 960.0f, -1.0f, 1.0f);
-    glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0));
     glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(rectangle.m_transform.x, rectangle.m_transform.y, 0));
 
     glm::mat4 mvp = proj * view * model;

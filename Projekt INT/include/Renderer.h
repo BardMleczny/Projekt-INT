@@ -6,6 +6,7 @@
 #include "IndexBuffer.h"
 #include "Shader.h"
 
+#include "Camera.h"
 #include "Color.h"
 
 #define ASSERT(x) if (!(x)) __debugbreak();
@@ -25,7 +26,7 @@ public:
     void Clear();
     void Draw(const VertexArray& va, const IndexBuffer& ib, const Shader& shader) const;
     void DrawBatch(const VertexArray& va, const IndexBuffer& ib, const Shader& shader, const unsigned int* indices) const;
-    void DrawRectangle(const Rectangle& rectangle, const Color& color, Shader& shader) const;
+    void DrawRectangle(const Rectangle& rectangle, const Color& color, Shader& shader, glm::mat4 view = glm::mat4(1.0f)) const;
 private:
     
 };

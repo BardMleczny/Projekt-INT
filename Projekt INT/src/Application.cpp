@@ -19,10 +19,9 @@
 #include "../tests/TestClearColor.h"
 
 #include "Grid.h"
-
 #include "Number.h"
-
 #include "Camera.h"
+#include "Coin.h"
 
 void calculateFPS(GLFWwindow* window);
 
@@ -80,17 +79,22 @@ int main(void)
         //Player player(*new Rectangle(200, 2400, 96, 96, "res/shaders/basicRectangle.shader"), color, "res/textures/player_right.png"); 
         //NumberText n(251, 64);
 
-        std::vector<GameObject*> f;
-        for (int i = 0; i < grid.size; i++)
+        int coinCount = 3;
+        bool* pickedCoins = new bool[coinCount];
+
+        for (int i = 0; i < coinCount; i++)
         {
-            //std::cout << grid.tiles[i].type;
-            /*if (grid.tiles[i].type != TerrainType::SKY && grid.tiles[i].type != TerrainType::DEFAULT)
-            {
-                Transform t = grid.tiles[i].transform;
-                
-                f.emplace_back(new GameObject(*new Rectangle(t.x, t.y, t.width, t.height, "res/shaders/basic.shader"), { 0.0f, 0.0f, 0.0f, 1.0f }, "res/textures/image1.png"));
-            }*/
+            pickedCoins[i] = 0;
         }
+
+        Coin** coin = new Coin*[coinCount];
+        coin[0] = new Coin(192, 640);
+        coin[1] = new Coin(320, 640);
+        coin[2] = new Coin(480, 640);
+
+        
+        Player player(*new Rectangle(192, 640, 96, 96, "res/shaders/basicRectangle.shader"), color, "res/textures/player_right.png");
+        NumberText points(0, 32);
 
         while (!glfwWindowShouldClose(window))
         {
@@ -100,14 +104,24 @@ int main(void)
             player.Update(renderer, grid, camera);
             grid.Draw(renderer, camera.GetMatrix());
 
-            /*for (int i = 0; i < f.size(); i++)
+            for (int i = 0; i < coinCount; i++)
             {
-                f[i]->Draw(renderer);
-            }*/
+                if (!pickedCoins[i])
+                {
+                    if (coin[i]->canBeDrawn)
+                    {
+                        coin[i]->Draw(renderer, camera);
+                        if (coin[i]->IsPicked(player))
+                        {
+                            delete coin[i];
+                            pickedCoins[i] = true;
+                            points.number++;
+                        }
+                    }
+                }
+            }
 
-            
-
-            //n.Draw(100, 100, renderer);
+            points.Draw(100, 860, renderer);
 
             ImGui_ImplOpenGL3_NewFrame();
             ImGui_ImplGlfw_NewFrame();

@@ -7,7 +7,7 @@
 class NumberText
 {
 public:
-	NumberText(int number, int size);
+	NumberText(int value, int fontSize);
 	~NumberText();
 	int number;
 	void Draw(float x, float y, const Renderer& renderer);

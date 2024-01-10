@@ -96,6 +96,9 @@
     <ClCompile Include="src\TileTexture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Coin.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="external\glm\detail\func_common.inl">
@@ -1467,6 +1470,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Coin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

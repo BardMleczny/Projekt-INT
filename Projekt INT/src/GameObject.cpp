@@ -5,7 +5,7 @@
 GameObject::GameObject(Rectangle& rectangle, Color color, const std::string& texturePath)
 	: m_rectangle(rectangle), m_color(color), m_texture(texturePath)
 {
-
+	m_rectangle = m_rectangle;
 }
 
 GameObject::GameObject(Rectangle& rectangle, Color color, const Texture& texture)

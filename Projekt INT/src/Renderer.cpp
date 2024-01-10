@@ -31,7 +31,7 @@ Renderer::Renderer()
 
 void Renderer::Clear()
 {
-    glClearColor(0, 204, 255, 1);
+    glClearColor(0.15, 0.67, 0.88, 1);
     glClear(GL_COLOR_BUFFER_BIT);
 }
 

@@ -73,10 +73,11 @@ int main(void)
         ImGui_ImplOpenGL3_Init("#version 330");
         ImGui::StyleColorsDark();
 
-        Grid grid("res/textures/niggermap3.png");
+        Grid grid("res/textures/map3.png");
 
         Color color = { 1.0f, 1.0f, 1.0f, 1.0f };
         Player player(*new Rectangle(192, 640, 96, 96, "res/shaders/basicRectangle.shader"), color, "res/textures/player_right.png");
+        //Player player(*new Rectangle(200, 2400, 96, 96, "res/shaders/basicRectangle.shader"), color, "res/textures/player_right.png"); 
         //NumberText n(251, 64);
 
         std::vector<GameObject*> f;

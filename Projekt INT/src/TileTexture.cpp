@@ -6,7 +6,7 @@ Grid::TileTexture::TileTexture()
 	textures = new Texture * [NUM_OF_TEXTURES];
 	std::string texturesNames[NUM_OF_TEXTURES] = {
 		"empty",
-		"grass1", "grass2", "grass3", "grass4", "grass4",
+		"grass1", "grass2", "grass3", "grass4", "grass5",
 		"dirtGrass1", "dirtGrass2", "dirtGrass3", "dirtGrass4", "dirtGrass5",
 		"dirtLeft1", "dirtLeft2", "dirtRight1", "dirtRight2",
 		"dirtCenter1", "dirtCenter2" , "dirtCenter3" , "dirtCenter4",

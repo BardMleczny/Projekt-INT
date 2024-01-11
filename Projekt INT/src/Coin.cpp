@@ -1,7 +1,7 @@
 #include "Coin.h"
 
 Coin::Coin(float x, float y)
-	: m_rectangle(x, y, size, size, "res/shaders/basicRectangle.shader"), m_texture("res/textures/coin.png"), canBeDrawn(true), m_color({ 1.0f, 1.0f, 1.0f, 1.0f })
+	: m_rectangle(x, y, SIZE, SIZE, "res/shaders/basicRectangle.shader"), m_texture("res/textures/coin.png"), canBeDrawn(true), m_color({ 1.0f, 1.0f, 1.0f, 1.0f })
 {
 
 }

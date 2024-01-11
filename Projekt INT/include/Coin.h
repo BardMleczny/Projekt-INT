@@ -16,7 +16,7 @@ public:
 
 	bool canBeDrawn = false;
 private:
-	float size = 40.0f;
+	const float SIZE = 40;
 
 	Rectangle m_rectangle;
 	Texture m_texture;

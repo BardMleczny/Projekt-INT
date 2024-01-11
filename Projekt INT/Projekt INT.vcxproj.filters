@@ -99,6 +99,9 @@
     <ClCompile Include="src\Coin.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\CheckPoint.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="external\glm\detail\func_common.inl">
@@ -1473,6 +1476,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Coin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CheckPoint.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="levels\Class.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

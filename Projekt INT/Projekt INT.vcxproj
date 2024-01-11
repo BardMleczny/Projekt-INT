@@ -172,6 +172,7 @@
     <ClCompile Include="src\Grid.cpp" />
     <ClCompile Include="src\IndexBuffer.cpp" />
     <ClCompile Include="src\Input.cpp" />
+    <ClCompile Include="src\Level.cpp" />
     <ClCompile Include="src\Number.cpp" />
     <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\Rectangle.cpp" />
@@ -491,6 +492,7 @@
     <ClInclude Include="include\Grid.h" />
     <ClInclude Include="include\IndexBuffer.h" />
     <ClInclude Include="include\Input.h" />
+    <ClInclude Include="include\Level.h" />
     <ClInclude Include="include\Number.h" />
     <ClInclude Include="include\Player.h" />
     <ClInclude Include="include\Rectangle.h" />

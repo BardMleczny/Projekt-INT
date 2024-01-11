@@ -4,8 +4,8 @@
 
 #include "Camera.h"
 
-Player::Player(Rectangle& rectangle, Color color, const std::string& texturePath)
-	: GameObject::GameObject(rectangle, color, texturePath), m_speedX(0), m_speedY(0)
+Player::Player(Rectangle& rectangle, Color color, const std::string& texturePath1, const std::string& texturePath2)
+	: GameObject::GameObject(rectangle, color, texturePath1), m_speedX(0), m_speedY(0), m_Texture2(texturePath2)
 {
 
 }	
@@ -20,7 +20,31 @@ void Player::Update(const Renderer& renderer, const Grid& grid, Camera& camera)
 
 void Player::Draw(const Renderer& renderer, Camera camera)
 {
-	GameObject::Draw(renderer, camera);
+	if (m_speedX > 0)
+	{
+		GameObject::Draw(renderer, camera);
+		direction = true;
+	}
+	else if (m_speedX < 0)
+	{
+		m_Texture2.Bind();
+		renderer.DrawRectangle(m_rectangle, m_color, m_rectangle.m_shader, camera.GetMatrix());
+		m_Texture2.Unbind();
+		direction = false;
+	}
+	else
+	{
+		if (direction)
+		{
+			GameObject::Draw(renderer, camera);
+		}
+		else
+		{
+			m_Texture2.Bind();
+			renderer.DrawRectangle(m_rectangle, m_color, m_rectangle.m_shader, camera.GetMatrix());
+			m_Texture2.Unbind();
+		}
+	}
 }
 
 void Player::CheckCollisions(const Grid& grid)

@@ -7,7 +7,7 @@
 class Player : public GameObject
 {
 public:
-	Player(Rectangle& rectangle, Color color, const std::string& texturePath);
+	Player(Rectangle& rectangle, Color color, const std::string& texturePath1, const std::string& texturePath2);
 
 	void Update(const Renderer& renderer, const Grid& grid, Camera& camera);
 private:
@@ -18,5 +18,7 @@ private:
 
 	float m_speedX, m_speedY;
 
-	bool isOnGround, canJump;
+	bool isOnGround, canJump, direction;
+	
+	Texture m_Texture2;
 };

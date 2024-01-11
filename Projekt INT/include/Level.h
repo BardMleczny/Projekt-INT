@@ -9,9 +9,10 @@
 
 class Level
 {
-	Level(std::string gridPath, Vector2 checkPointPos, Vector2 playerPos, Vector2* coinsPos, int coinCount);
+public:
+	Level(std::string gridPath, Vector2 checkPointPos, Vector2 playerPos, Vector2* coinsPos, int coinCount, Player& player);
 
-	bool Update(const Renderer& renderer, Camera& camera, const Player& player, NumberText& points);
+	bool Update(const Renderer& renderer, Camera& camera, Player& player, NumberText& points);
 
 	Grid grid;
 	CheckPoint checkPoint;

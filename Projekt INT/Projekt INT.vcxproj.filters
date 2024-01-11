@@ -102,6 +102,9 @@
     <ClCompile Include="src\CheckPoint.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Level.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="external\glm\detail\func_common.inl">
@@ -1481,7 +1484,13 @@
     <ClInclude Include="include\CheckPoint.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="levels\Class.h">
+    <ClInclude Include="include\Vector2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="levels\Level.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Level.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

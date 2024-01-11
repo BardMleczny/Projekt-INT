@@ -1,6 +1,6 @@
 #include "Level.h"
 
-Level::Level(std::string gridPath, Vector2 checkPointPos, Vector2 playerPos, Vector2* coinsPos, int coinCount)
+Level::Level(std::string gridPath, Vector2 checkPointPos, Vector2 playerPos, Vector2* coinsPos, int coinCount, Player& player)
 	: grid(gridPath),
 	checkPoint(checkPointPos.x, checkPointPos.y), 
 	playerPos(playerPos),
@@ -13,9 +13,12 @@ Level::Level(std::string gridPath, Vector2 checkPointPos, Vector2 playerPos, Vec
 		pickedCoins[i] = 0;
 		coins[i] = new Coin(coinsPos[i].x, coinsPos[i].y);
 	}
+
+    player.m_rectangle.m_transform.x = playerPos.x;
+    player.m_rectangle.m_transform.y = playerPos.y;
 }
 
-bool Level::Update(const Renderer& renderer, Camera& camera, const Player& player, NumberText& points)
+bool Level::Update(const Renderer& renderer, Camera& camera, Player& player, NumberText& points)
 {
     for (int i = 0; i < coinCount; i++)
     {
@@ -33,6 +36,9 @@ bool Level::Update(const Renderer& renderer, Camera& camera, const Player& playe
             }
         }
     }
+
+    if (player.m_rectangle.m_transform.y < -1000)
+        player.m_rectangle.m_transform.y = playerPos.y;
 
     grid.Draw(renderer, camera.GetMatrix());
 

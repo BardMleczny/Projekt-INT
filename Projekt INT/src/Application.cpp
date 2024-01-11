@@ -21,6 +21,7 @@
 #include "Camera.h"
 #include "Coin.h"
 #include "CheckPoint.h"
+#include "Level.h"
 
 void calculateFPS(GLFWwindow* window);
 
@@ -64,50 +65,35 @@ int main(void)
         Renderer renderer;
         Camera camera;
 
-        Grid grid("res/textures/niggermap3.png");
-
-        int coinCount = 3;
-        bool* pickedCoins = new bool[coinCount];
-
-        for (int i = 0; i < coinCount; i++)
-        {
-            pickedCoins[i] = 0;
-        }
-
-        Coin** coin = new Coin*[coinCount];
-        coin[0] = new Coin(192, 640);
-        coin[1] = new Coin(320, 640);
-        coin[2] = new Coin(480, 640);
-
-        CheckPoint checkPoint(192, 480);
-
-        Player player(*new Rectangle(192, 640, 96, 96, "res/shaders/basicRectangle.shader"), { 1.0f, 1.0f, 1.0f, 1.0f }, "res/textures/player_right.png");
         NumberText points(0, 32);
+        Player player(*new Rectangle(192, 640, 96, 96, "res/shaders/basicRectangle.shader"), { 1.0f, 1.0f, 1.0f, 1.0f }, "res/textures/player_right.png", "res/textures/player_left.png");
+
+        Vector2 coins[] = {
+            {200, 1200},
+            {400, 1200}
+        };
+        Level levels[1] = {
+            Level("res/textures/map1.png", {}, {}, coins, 2, player)
+        };
+        int currentLevel = 0;
 
         while (!glfwWindowShouldClose(window))
         {
             calculateFPS(window);
 
             renderer.Clear();
-            player.Update(renderer, grid, camera);
-            grid.Draw(renderer, camera.GetMatrix());
 
-            for (int i = 0; i < coinCount; i++)
+            if (currentLevel < 1)
             {
-                if (!pickedCoins[i])
-                {
-                    if (coin[i]->canBeDrawn)
-                    {
-                        coin[i]->Draw(renderer, camera);
-                        if (coin[i]->IsPicked(player))
-                        {
-                            delete coin[i];
-                            pickedCoins[i] = true;
-                            points.number++;
-                        }
-                    }
-                }
+                player.Update(renderer, levels[currentLevel].grid, camera);
+                if (levels[currentLevel].Update(renderer, camera, player, points))
+                    currentLevel++;
             }
+            else
+            {
+                break;
+            }
+            
 
             points.Draw(100, 860, renderer);
 

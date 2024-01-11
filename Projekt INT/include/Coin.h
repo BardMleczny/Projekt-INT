@@ -16,7 +16,7 @@ public:
 
 	bool canBeDrawn = false;
 private:
-	float size = 32.0f;
+	float size = 40.0f;
 
 	Rectangle m_rectangle;
 	Texture m_texture;

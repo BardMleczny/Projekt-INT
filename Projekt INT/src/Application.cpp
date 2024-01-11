@@ -79,7 +79,7 @@ int main(void)
         //Player player(*new Rectangle(200, 2400, 96, 96, "res/shaders/basicRectangle.shader"), color, "res/textures/player_right.png"); 
         //NumberText n(251, 64);
 
-        int coinCount = 3;
+        int coinCount = 17; // Map 3
         bool* pickedCoins = new bool[coinCount];
 
         for (int i = 0; i < coinCount; i++)
@@ -88,12 +88,29 @@ int main(void)
         }
 
         Coin** coin = new Coin*[coinCount];
-        coin[0] = new Coin(192, 640);
-        coin[1] = new Coin(320, 640);
-        coin[2] = new Coin(480, 640);
+        coin[0] = new Coin(512, 440); // Map3
+        coin[1] = new Coin(1024, 440);
+        coin[2] = new Coin(1764, 730);
+        coin[3] = new Coin(2400, 824);
+        coin[4] = new Coin(2878, 1144);
+        coin[5] = new Coin(2400, 1464);
+        coin[6] = new Coin(2052, 1784);
+        coin[7] = new Coin(960, 1564);
+        coin[8] = new Coin(312, 1696);
+        coin[9] = new Coin(672, 2010);
+        coin[10] = new Coin(1280, 2232);
+        coin[11] = new Coin(1708, 2556);
+        coin[12] = new Coin(1764, 2556);
+        coin[13] = new Coin(1820, 2556);
+        coin[14] = new Coin(1708, 2612);
+        coin[15] = new Coin(1764, 2612);
+        coin[16] = new Coin(1820, 2612);
+        //coin[2] = new Coin(1380, 610); // Map3 OLD
+        //coin[3] = new Coin(1420, 680);
+        //coin[4] = new Coin(1480, 740);
+        //coin[5] = new Coin(1560, 780);
 
-        
-        Player player(*new Rectangle(192, 640, 96, 96, "res/shaders/basicRectangle.shader"), color, "res/textures/player_right.png");
+
         NumberText points(0, 32);
 
         while (!glfwWindowShouldClose(window))

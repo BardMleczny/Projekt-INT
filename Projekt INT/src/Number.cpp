@@ -22,10 +22,12 @@ NumberText::~NumberText()
 
 void NumberText::Draw(float x, float y, const Renderer& renderer)
 {
-	int length = 0;
-	while ((number % int(pow(10, length + 1))) / int(pow(10, length)))
+	int length = 0, divisor = 10;
+	while ((number != 0 && (number % divisor == 0)) || ((number % int(pow(10, length + 1))) / int(pow(10, length))))
 	{
 		length++;
+		if (number % divisor == 0)
+			divisor *= 10;
 	}
 
 	basicRectangle.m_transform.y = y;
@@ -33,7 +35,7 @@ void NumberText::Draw(float x, float y, const Renderer& renderer)
 	{
 		int index = (number % int(pow(10, i + 1)) - number % int(pow(10, i))) / int(pow(10, i));
 		numberTextures[index]->Bind();
-		basicRectangle.m_transform.x = x + basicRectangle.GetWidth() * i;
+		basicRectangle.m_transform.x = x - basicRectangle.GetWidth() * (i + 1);
 		
 		renderer.DrawRectangle(basicRectangle, { 1.0f, 1.0f, 1.0f, 1.0f }, basicRectangle.m_shader);
 		numberTextures[index]->Unbind();

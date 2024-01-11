@@ -20,4 +20,5 @@ public:
 	int coinCount;
 	Coin** coins;
 	bool* pickedCoins;
+	bool didStart;
 };

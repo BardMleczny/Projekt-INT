@@ -1,7 +1,7 @@
 #include "Number.h"
 #include <iostream>
 NumberText::NumberText(int number, int size)
-	: number(number), basicRectangle(0.0f, 0.0f, size, size, "res/shaders/basicRectangle.shader")
+	: value(number), basicRectangle(0.0f, 0.0f, size, size, "res/shaders/basicRectangle.shader")
 {
 	numberTextures = new Texture*[10];
 	for (int i = 0; i < 10; i++)
@@ -23,17 +23,17 @@ NumberText::~NumberText()
 void NumberText::Draw(float x, float y, const Renderer& renderer)
 {
 	int length = 0, divisor = 10;
-	while ((number != 0 && (number % divisor == 0)) || ((number % int(pow(10, length + 1))) / int(pow(10, length))))
+	while ((value != 0 && (value % divisor == 0)) || ((value % int(pow(10, length + 1))) / int(pow(10, length))))
 	{
 		length++;
-		if (number % divisor == 0)
+		if (value % divisor == 0)
 			divisor *= 10;
 	}
 
 	basicRectangle.m_transform.y = y;
 	for (int i = 0; i < length; i++)
 	{
-		int index = (number % int(pow(10, i + 1)) - number % int(pow(10, i))) / int(pow(10, i));
+		int index = (value % int(pow(10, i + 1)) - value % int(pow(10, i))) / int(pow(10, i));
 		numberTextures[index]->Bind();
 		basicRectangle.m_transform.x = x - basicRectangle.GetWidth() * (i + 1);
 		

@@ -7,7 +7,7 @@
 Player::Player(Rectangle& rectangle, Color color, const std::string& texturePath1, const std::string& texturePath2)
 	: GameObject::GameObject(rectangle, color, texturePath1), m_speedX(0), m_speedY(0), m_Texture2(texturePath2)
 {
-
+	direction = true;
 }	
 
 void Player::Update(const Renderer& renderer, const Grid& grid, Camera& camera)

@@ -1,9 +1,9 @@
 #include "CheckPoint.h"
 
 CheckPoint::CheckPoint(float x, float y)
-	: m_rectangle(x, y, SIZE, SIZE, "res/shaders/basicRectangle.shader"), m_texture("res/textures/image2.png"), m_color({ 1.0f, 1.0f, 1.0f, 1.0f })
+	: m_rectangle(x, y, SIZE, SIZE, "res/shaders/basicRectangle.shader"), m_texture("res/textures/checkPoint.png"), m_color({ 2.0f, 0.0f, 2.0f, 1.0f })
 {
-
+	
 }
 
 bool CheckPoint::IsComplete(const Player& player)

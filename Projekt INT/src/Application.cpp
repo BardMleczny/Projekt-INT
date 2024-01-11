@@ -66,15 +66,37 @@ int main(void)
         Camera camera;
 
         NumberText points(0, 32);
-        Player player(*new Rectangle(192, 640, 96, 96, "res/shaders/basicRectangle.shader"), { 1.0f, 1.0f, 1.0f, 1.0f }, "res/textures/player_right.png", "res/textures/player_left.png");
+        Player player(*new Rectangle(200, 2400, 96, 96, "res/shaders/basicRectangle.shader"), { 1.0f, 1.0f, 1.0f, 1.0f }, "res/textures/player_right.png", "res/textures/player_left.png");
 
-        Vector2 coins[] = {
-            {200, 1200},
-            {400, 1200}
+        Vector2 coins1[] = {
+            {800, 2176}, {1024, 2432}, {1250, 2176}, {1946, 2384},
+            {1984, 2432}, {2040, 2464}, {2272, 2488}, {2272, 2546},
+            {1024, 1334}, {1536, 1334}, {1152, 408}, {1408, 408},
+            {1152, 464}, {1408, 464}
         };
-        Level levels[1] = {
-            Level("res/textures/map1.png", {}, {}, coins, 2, player)
+        Vector2 coins2[] = {
+            {1024, 608}, {1088, 672}, {1152, 736}, {1200, 776},
+            {1248, 736}, {1312, 672}, {1376, 608}, {2137, 504}, 
+            {2176, 576}, {2216, 648}, {2272, 704}, {2328, 760},
+            {2400, 800}, {2720, 728}, {2778, 728}, {2720, 786},
+            {2778, 786}
         };
+        Vector2 coins3[] = {
+            {512, 440}, {680, 440}, {856, 440}, {1024, 440},
+            {1764, 730}, {2400, 824}, {2878, 1144}, {2400, 1464},
+            {2052, 1784}, {960, 1564}, {312, 1696}, {672, 2010},
+            {1280, 2232}, {1708, 2556}, {1764, 2556}, {1820, 2556},
+            {1708, 2612}, {1764, 2612}, {1820, 2612}
+        };
+        Level levels[3] = {
+            Level("res/textures/map1.png", {2400, 2528}, {200, 2400}, coins1, 14, player),
+            Level("res/textures/map2.png", {3072, 792}, {192, 640}, coins2, 17, player),
+            Level("res/textures/map3.png", {1920, 2592}, {192, 640}, coins3, 19, player)
+        };
+
+        CheckPoint checkPoint1(1280, 1372);
+        CheckPoint checkPoint2(1280, 448);
+
         int currentLevel = 0;
 
         while (!glfwWindowShouldClose(window))
@@ -83,7 +105,7 @@ int main(void)
 
             renderer.Clear();
 
-            if (currentLevel < 1)
+            if (currentLevel < 3)
             {
                 player.Update(renderer, levels[currentLevel].grid, camera);
                 if (levels[currentLevel].Update(renderer, camera, player, points))
@@ -91,10 +113,20 @@ int main(void)
             }
             else
             {
-                break;
+                if (points.value == 50)
+                    NumberText(2137, 100).Draw(900, 400, renderer);
+                else
+                    break;
+            }
+
+            if (currentLevel == 0)
+            {
+                checkPoint1.Draw(renderer, camera);
+                checkPoint2.Draw(renderer, camera);
+                if (checkPoint1.IsComplete(player) || checkPoint2.IsComplete(player))
+                    currentLevel = 1;
             }
             
-
             points.Draw(100, 860, renderer);
 
             glfwSwapBuffers(window);

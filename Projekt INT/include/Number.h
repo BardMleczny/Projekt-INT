@@ -9,7 +9,7 @@ class NumberText
 public:
 	NumberText(int value, int fontSize);
 	~NumberText();
-	int number;
+	int value;
 	void Draw(float x, float y, const Renderer& renderer);
 	Rectangle basicRectangle;
 	Texture** numberTextures;

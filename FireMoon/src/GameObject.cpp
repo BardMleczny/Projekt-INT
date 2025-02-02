@@ -22,6 +22,6 @@ GameObject::GameObject()
 
 void GameObject::Draw() {
 	m_texture.Bind();
-	Renderer::DrawRectangle(m_rectangle, m_color, Camera::Get(), m_rectangle.m_shader);
+	Renderer::DrawRectangle(m_rectangle, m_color, m_rectangle.m_shader);
 	m_texture.Unbind();
 }

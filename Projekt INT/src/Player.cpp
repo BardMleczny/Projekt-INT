@@ -28,7 +28,7 @@ void Player::Draw()
 	else if (m_speedX < 0)
 	{
 		m_Texture2.Bind();
-		Renderer::DrawRectangle(m_rectangle, m_color, Camera::Get(), m_rectangle.m_shader);
+		Renderer::DrawRectangle(m_rectangle, m_color, m_rectangle.m_shader);
 		m_Texture2.Unbind();
 		direction = false;
 	}
@@ -41,7 +41,7 @@ void Player::Draw()
 		else
 		{
 			m_Texture2.Bind();
-			Renderer::DrawRectangle(m_rectangle, m_color, Camera::Get(), m_rectangle.m_shader);
+			Renderer::DrawRectangle(m_rectangle, m_color, m_rectangle.m_shader);
 			m_Texture2.Unbind();
 		}
 	}
@@ -123,7 +123,7 @@ void Player::Move()
 	m_rectangle.m_transform.x += m_speedX;
 	m_rectangle.m_transform.y += m_speedY;
 
-	Camera::Get().TransformMatrix(m_rectangle.m_transform.x, m_rectangle.m_transform.y);
+	Camera::TransformMatrix(m_rectangle.m_transform.x, m_rectangle.m_transform.y);
 	
 }
 

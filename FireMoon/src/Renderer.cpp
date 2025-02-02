@@ -27,13 +27,13 @@ bool GLLogCall(const char* function, const char* file, int line)
     return true;
 }
 
-void Renderer::Clear()
+Renderer::Renderer()
+    : lastTime(1.0), frameCount(1)
 {
-    glClearColor(0.15, 0.67, 0.88, 1);
-    glClear(GL_COLOR_BUFFER_BIT);
+    
 }
 
-/*void Renderer::Init()
+void Renderer::IInit()
 {
     if (!glfwInit())
         __debugbreak;
@@ -65,12 +65,25 @@ void Renderer::Clear()
     GLCall(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
 }
 
-bool Renderer::ShouldWindowClose()
+Renderer& Renderer::Get()
+{
+    static Renderer renderer;
+    return renderer;
+}
+
+void Renderer::IClear()
+{
+    glClearColor(0.15, 0.67, 0.88, 1);
+    glClear(GL_COLOR_BUFFER_BIT);
+}
+
+
+bool Renderer::IShouldWindowClose()
 {
     return glfwWindowShouldClose(window) || Input::isKeyPressed(GLFW_KEY_ESCAPE);
 }
 
-void Renderer::BeginIteration()
+void Renderer::IBeginIteration()
 {
     CalculateFPS();
 
@@ -94,19 +107,19 @@ void Renderer::CalculateFPS() {
     }
 }
 
-void Renderer::EndIteration()
+void Renderer::IEndIteration()
 {
     glfwSwapBuffers(window);
 
     glfwPollEvents();
 }
 
-void Renderer::Terminate()
+void Renderer::ITerminate()
 {
     glfwTerminate();
-}*/
+}
 
-void Renderer::Draw(const VertexArray& va, const IndexBuffer& ib, const Shader& shader)
+void Renderer::IDraw(const VertexArray& va, const IndexBuffer& ib, const Shader& shader)
 {
     va.Bind();
     ib.Bind();
@@ -115,7 +128,7 @@ void Renderer::Draw(const VertexArray& va, const IndexBuffer& ib, const Shader& 
     GLCall(glDrawElements(GL_TRIANGLES, ib.GetCount(), GL_UNSIGNED_INT, nullptr));
 }
 
-void Renderer::DrawBatch(const VertexArray& va, const IndexBuffer& ib, const Shader& shader, const unsigned int* indices)
+void Renderer::IDrawBatch(const VertexArray& va, const IndexBuffer& ib, const Shader& shader, const unsigned int* indices)
 {
     va.Bind();
     ib.Bind();
@@ -124,10 +137,10 @@ void Renderer::DrawBatch(const VertexArray& va, const IndexBuffer& ib, const Sha
     GLCall(glDrawElements(GL_TRIANGLES, ib.GetCount(), GL_UNSIGNED_INT, indices));
 }
 
-void Renderer::DrawRectangle(const Rectangle& rectangle, const Color& color, Camera& camera, Shader& shader)
+void Renderer::IDrawRectangle(const Rectangle& rectangle, const Color& color, Shader& shader)
 {
     glm::mat4 proj = glm::ortho(0.0f, 1600.0f, 0.0f, 960.0f, -1.0f, 1.0f);
-    glm::mat4 view = camera.GetMatrix();
+    glm::mat4 view = Camera::GetMatrix();
     glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(rectangle.m_transform.x, rectangle.m_transform.y, 0));
 
 
@@ -148,7 +161,7 @@ void Renderer::DrawRectangle(const Rectangle& rectangle, const Color& color, Cam
     GLCall(glDrawElements(GL_TRIANGLES, rectangle.m_ib.GetCount(), GL_UNSIGNED_INT, &vertices));
 }
 
-void Renderer::DrawRectangle(const Rectangle& rectangle, const Color& color, glm::mat4 view, Shader& shader)
+void Renderer::IDrawRectangle(const Rectangle& rectangle, const Color& color, glm::mat4 view, Shader& shader)
 {
     glm::mat4 proj = glm::ortho(0.0f, 1600.0f, 0.0f, 960.0f, -1.0f, 1.0f);
     glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(rectangle.m_transform.x, rectangle.m_transform.y, 0));

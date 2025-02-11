@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Renderer.h"
 #include "Rectangle.h"
 #include "TerrainType.h"
 #include "Texture.h"

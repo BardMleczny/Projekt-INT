@@ -4,7 +4,6 @@
 #include "CheckPoint.h"
 #include "Coin.h"
 #include "Vector2.h"
-#include "Camera.h"
 #include "Number.h"
 
 class Level

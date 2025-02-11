@@ -1,6 +1,5 @@
 #pragma once
 
-#include "GameObject.h"
 #include "Rectangle.h"
 #include "Player.h"
 

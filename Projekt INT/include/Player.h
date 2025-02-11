@@ -2,7 +2,6 @@
 
 #include "GameObject.h"
 #include "Grid.h"
-#include "Camera.h"
 
 class Player : public GameObject
 {

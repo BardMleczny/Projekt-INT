@@ -6,7 +6,7 @@ CheckPoint::CheckPoint(float x, float y)
 	
 }
 
-bool CheckPoint::IsComplete(const Player& player)
+bool CheckPoint::IsComplete(const Player& player) const
 {
 	if (CheckCollision(m_rectangle.m_transform, player.m_rectangle.m_transform))
 		return true;

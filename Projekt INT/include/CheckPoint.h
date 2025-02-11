@@ -1,6 +1,5 @@
 #pragma once
 
-#include "GameObject.h"
 #include "Rectangle.h"
 #include "Player.h"
 
@@ -11,7 +10,7 @@ public:
 
 	void Draw();
 
-	bool IsComplete(const Player& player);
+	bool IsComplete(const Player& player) const;
 private:
 	const float SIZE = 64;
 

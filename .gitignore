@@ -16,11 +16,11 @@
 # Mono auto generated files
 mono_crash.*
 
-!dependencies/
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
+!Dependecies/GLEW/lib/Release
 [Rr]eleases/
 x64/
 x86/

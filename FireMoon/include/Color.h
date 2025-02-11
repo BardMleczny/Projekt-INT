@@ -1,6 +1,5 @@
 #pragma once
 
-
 enum Colors
 {
     WHITE,

@@ -49,6 +49,6 @@ Color::Color(Colors colorCode)
 }
 
 Color::Color(float r, float g, float b, float a)
-    : r(r), g(g), b(b), a(a)
+    : r(r/255), g(g/255), b(b/255), a(a/255)
 {
 }

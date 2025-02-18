@@ -5,8 +5,8 @@
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 
-Rectangle::Rectangle(float x, float y, float width, float height, const std::string& shaderPath)
-	: m_shader(shaderPath),
+Rectangle::Rectangle(float x, float y, float width, float height, const std::string& vertexFilepath, const std::string& fragmentFilepath)
+	: m_shader(vertexFilepath, fragmentFilepath),
 	m_vb(), m_layout(), m_va()
 {
 	m_transform = { x, y, width, height };
@@ -49,5 +49,5 @@ bool CheckCollision(Transform rectangle1, Transform rectangle2)
 		rectangle1.x + rectangle1.width > rectangle2.x &&
 		rectangle1.y < rectangle2.y + rectangle2.height &&
 		rectangle1.y + rectangle1.height > rectangle2.y
-		);
+	);
 }

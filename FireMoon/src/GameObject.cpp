@@ -15,7 +15,7 @@ GameObject::GameObject(Rectangle& rectangle, Color color, const Texture& texture
 }
 
 GameObject::GameObject()
-	: m_rectangle(0, 0, 0, 0, ""), m_color({0.0f, 0.0f, 0.0f, 0.0f}), m_texture("")
+	: m_rectangle(0, 0, 0, 0, "", ""), m_color({0.0f, 0.0f, 0.0f, 0.0f}), m_texture("")
 {
 
 }

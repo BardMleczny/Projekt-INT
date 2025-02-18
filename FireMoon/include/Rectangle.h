@@ -13,7 +13,7 @@ class Rectangle
 public:
 	Transform m_transform;
 
-	Rectangle(float x, float y, float width, float height, const std::string& shaderPath);
+	Rectangle(float x, float y, float width, float height, const std::string& vertexFilepath, const std::string& fragmentFilepath);
 	
 	void Bind();
 

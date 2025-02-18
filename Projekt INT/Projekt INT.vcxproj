@@ -619,8 +619,11 @@
     <None Include="external\glm\gtx\vector_query.inl" />
     <None Include="external\glm\gtx\wrap.inl" />
     <None Include="res\shaders\basic.shader" />
-    <None Include="res\shaders\basicRectangle.shader" />
-    <None Include="res\shaders\grid.shader" />
+    <None Include="res\shaders\basicRectangle_fragment.shader" />
+    <None Include="res\shaders\basicRectangle_vertex.shader" />
+    <None Include="res\shaders\glow.shader" />
+    <None Include="res\shaders\grid_fragment.shader" />
+    <None Include="res\shaders\grid_vertex.shader" />
     <None Include="res\shaders\number.shader" />
   </ItemGroup>
   <ItemGroup>

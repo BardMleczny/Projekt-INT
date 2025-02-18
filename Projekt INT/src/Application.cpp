@@ -21,7 +21,7 @@ int main(void)
     Renderer::Init();
     
     NumberText points(0, 32, Colors::WHITE);
-    Player player(*new Rectangle(200, 2400, 96, 96, "res/shaders/basicRectangle.shader"), { 1.0f, 1.0f, 1.0f, 1.0f }, "res/textures/player_right.png", "res/textures/player_left.png");
+    Player player(*new Rectangle(200, 2400, 96, 96, "res/shaders/basicRectangle_vertex.shader", "res/shaders/basicRectangle_fragment.shader"), Colors::WHITE, "res/textures/player_right.png", "res/textures/player_left.png");
 
     Vector2 coins1[] = {
         {800, 2176}, {1024, 2432}, {1250, 2176}, {1946, 2384},

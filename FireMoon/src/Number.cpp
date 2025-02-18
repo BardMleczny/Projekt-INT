@@ -3,7 +3,7 @@
 
 NumberText::NumberText(int number, int size, Color color)
 	: value(number),
-	basicRectangle(0.0f, 0.0f, size, size, "res/shaders/basicRectangle.shader"),
+	basicRectangle(0.0f, 0.0f, size, size, "res/shaders/basicRectangle_vertex.shader", "res/shaders/basicRectangle_fragment.shader"),
 	color(color)
 {
 	numberTextures = new Texture*[10];

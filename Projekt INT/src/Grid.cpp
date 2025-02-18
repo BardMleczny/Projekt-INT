@@ -8,7 +8,7 @@
 #include "Color.h"
 
 Grid::Grid(const std::string& path)
-	:  shader("res/shaders/grid.shader")
+	:  shader("res/shaders/grid_vertex.shader", "res/shaders/grid_fragment.shader")
 {
 	int width, height, bpp;
 	unsigned char* buffer = stbi_load(path.c_str(), &width, &height, &bpp, 4);

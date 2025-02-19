@@ -137,16 +137,20 @@ void Player::Input()
 	if (Input::isKeyDown(GLFW_KEY_D)) {
 		m_speedX += 7.0f;
 	}
+
+	static double delta = 1;
 	if (Input::isKeyDown(GLFW_KEY_W) && canJump) {
-		m_speedY = 24.0f;
+		delta = Renderer::GetDeltaTime();
+		m_speedY = 24.0f * delta;
 		isOnGround = false;
 		canJump = false;
 	}
 	if (!isOnGround)
 	{
-		if (m_speedY > -12.0f)
-		{
-			m_speedY -= 0.8f;
+		if (m_speedY > -12.0f * delta)
+		{ 
+			m_speedY -= (0.8f * delta * delta);
 		}
 	}	
+	m_speedX *= Renderer::GetDeltaTime();
 }

@@ -35,8 +35,8 @@ public:
     static inline void DrawBatch(const VertexArray& va, const IndexBuffer& ib, const Shader& shader, const unsigned int* indices) { Get().IDrawBatch(va, ib, shader, indices); }
     static inline void DrawRectangle(const Rectangle& rectangle, const Color& color, Shader& shader) { Get().IDrawRectangle(rectangle, color, shader); }
     static inline void DrawRectangle(const Rectangle& rectangle, const Color& color, glm::mat4 view, Shader& shader) { Get().IDrawRectangle(rectangle, color, view, shader); }
-
-    int frameCount;
+    static inline double GetDeltaTime() { return Get().IGetDeltaTime(); }
+    
 
 private:
     Renderer();
@@ -52,8 +52,11 @@ private:
     void IDrawRectangle(const Rectangle& rectangle, const Color& color, Shader& shader);
     void IDrawRectangle(const Rectangle& rectangle, const Color& color, glm::mat4 view, Shader& shader);
 
+    inline double IGetDeltaTime() { return m_deltaTime / 0.01666; }
+
     void CalculateFPS();
 
-    GLFWwindow* window;
-    double lastTime;
+    GLFWwindow* m_window;
+    double m_lastTime, m_deltaTime;
+    int m_frameCount;
 };

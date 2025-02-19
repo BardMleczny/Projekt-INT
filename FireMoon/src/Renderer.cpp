@@ -28,7 +28,7 @@ bool GLLogCall(const char* function, const char* file, int line)
 }
 
 Renderer::Renderer()
-    : lastTime(1.0), frameCount(1)
+    : m_lastTime(1.0), m_frameCount(1)
 {
     
 }
@@ -42,19 +42,19 @@ void Renderer::IInit()
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-    window = glfwCreateWindow(1600, 960, "Projekt", NULL, NULL);
+    m_window = glfwCreateWindow(1600, 960, "Projekt", NULL, NULL);
 
-    Input::window = window;
+    Input::window = m_window;
 
-    if (!window)
+    if (!m_window)
     {
         glfwTerminate();
         __debugbreak;
     }
 
-    glfwMakeContextCurrent(window);
+    glfwMakeContextCurrent(m_window);
 
-    glfwSwapInterval(1);
+    //glfwSwapInterval(1);
 
     if (glewInit() != GLEW_OK)
         std::cout << "Error!" << std::endl;
@@ -80,7 +80,7 @@ void Renderer::IClear()
 
 bool Renderer::IShouldWindowClose()
 {
-    return glfwWindowShouldClose(window) || Input::isKeyPressed(GLFW_KEY_ESCAPE);
+    return glfwWindowShouldClose(m_window) || Input::isKeyPressed(GLFW_KEY_ESCAPE);
 }
 
 void Renderer::IBeginIteration()
@@ -94,22 +94,25 @@ void Renderer::IBeginIteration()
 void Renderer::CalculateFPS() {
     double currentTime = glfwGetTime();
 
-    double deltaTime = currentTime - lastTime;
+    m_deltaTime = currentTime - m_lastTime;
+    //std::cout << m_deltaTime << std::endl;
+    m_frameCount++;
 
-    frameCount++;
-
-    if (deltaTime >= 1.0) {
-        double fps = static_cast<double>(frameCount) / deltaTime;
+    if (((int)(1 / m_deltaTime) - m_frameCount) <= 0) {
+        double fps = 1 / m_deltaTime;
         std::cout << "FPS: " << fps << std::endl;
+        std::cout << "Delta: " << GetDeltaTime() << std::endl;
 
-        frameCount = 0;
-        lastTime = currentTime;
+
+
+        m_frameCount = 0; 
     }
+    m_lastTime = currentTime;
 }
 
 void Renderer::IEndIteration()
 {
-    glfwSwapBuffers(window);
+    glfwSwapBuffers(m_window);
 
     glfwPollEvents();
 }

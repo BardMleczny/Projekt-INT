@@ -54,7 +54,7 @@ void Renderer::IInit()
 
     glfwMakeContextCurrent(m_window);
 
-    //glfwSwapInterval(1);
+    glfwSwapInterval(1);
 
     if (glewInit() != GLEW_OK)
         std::cout << "Error!" << std::endl;
